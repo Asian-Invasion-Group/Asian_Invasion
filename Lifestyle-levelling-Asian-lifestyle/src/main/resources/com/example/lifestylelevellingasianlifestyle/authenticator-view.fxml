@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.lifestylelevellingasianlifestyle.AuthenticatorController">
+
+    <center>
+        <StackPane>
+            <!-- LOGIN PANE -->
+            <VBox alignment="CENTER" fx:id="loginPane" spacing="10">
+                <Label text="Login" style="-fx-font-size: 20;"  />
+                <TextField fx:id="loginUsernameField" promptText="Username" />
+                <PasswordField fx:id="loginPasswordField" promptText="Password" />
+                <Button text="Login" onAction="#onLogin"/>
+                <Hyperlink text="Sign up" onAction="#showSignUp"  />
+            </VBox>
+
+            <!-- SIGN UP PANE -->
+            <VBox alignment="CENTER" fx:id="signUpPane" spacing="10" visible="false">
+                <Label text="Sign Up" style="-fx-font-size: 20;" />
+                <TextField fx:id="signUpUsernameField" promptText="Username" />
+                <PasswordField fx:id="signUpPasswordField" promptText="Password" />
+                <PasswordField fx:id="signUpConfirmField" promptText="Confirm Password" />
+                <Button text="Create Account" onAction="#onSignUp" />
+                <Hyperlink text="Already have an account? Login" onAction="#showLogin"/>
+            </VBox>
+        </StackPane>
+    </center>
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+</BorderPane>
