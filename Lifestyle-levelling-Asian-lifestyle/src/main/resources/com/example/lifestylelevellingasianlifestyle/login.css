@@ -1,0 +1,146 @@
+/* =========================
+   Root / Main Container
+   ========================= */
+
+.root {
+    -fx-background-color: #f5f7fa;
+    -fx-font-family: "System";
+}
+
+
+/* =========================
+   Login / Sign Up Panels
+   ========================= */
+
+#loginPane,
+#signUpPane {
+    -fx-background-color: white;
+    -fx-padding: 30px;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-border-color: #e1e5ea;
+    -fx-border-width: 1px;
+
+    /* Subtle shadow */
+    -fx-effect: dropshadow(
+            gaussian,
+            rgba(0, 0, 0, 0.12),
+            15,
+            0,
+            0,
+            5
+    );
+}
+
+
+/* =========================
+   Titles
+   ========================= */
+
+.label {
+    -fx-text-fill: #222831;
+}
+
+#loginPane .label,
+#signUpPane .label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+
+/* =========================
+   Text Fields
+   ========================= */
+
+.text-field,
+.password-field {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 40px;
+
+    -fx-background-color: #f8f9fb;
+    -fx-border-color: #d9dee5;
+    -fx-border-width: 1px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+
+    -fx-padding: 0 12px;
+    -fx-font-size: 14px;
+}
+
+
+/* Text field when focused */
+
+.text-field:focused,
+.password-field:focused {
+    -fx-background-color: white;
+    -fx-border-color: #4f7cff;
+    -fx-border-width: 2px;
+}
+
+
+/* Placeholder text */
+
+.text-field .prompt-text,
+.password-field .prompt-text {
+    -fx-fill: #9aa3ad;
+}
+
+
+/* =========================
+   Buttons
+   ========================= */
+
+.button {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 40px;
+
+    -fx-background-color: #4f7cff;
+    -fx-text-fill: white;
+
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-background-radius: 6px;
+    -fx-cursor: hand;
+}
+
+
+/* Button hover */
+
+.button:hover {
+    -fx-background-color: #3d68e8;
+}
+
+
+/* Button pressed */
+
+.button:pressed {
+    -fx-background-color: #3158ca;
+}
+
+
+/* =========================
+   Hyperlinks
+   ========================= */
+
+.hyperlink {
+    -fx-text-fill: #4f7cff;
+    -fx-font-size: 13px;
+    -fx-border-width: 0;
+    -fx-underline: false;
+}
+
+
+.hyperlink:hover {
+    -fx-text-fill: #3158ca;
+    -fx-underline: true;
+}
+
+
+/* =========================
+   StackPane
+   ========================= */
+
+.stack-pane {
+    -fx-alignment: center;
+}

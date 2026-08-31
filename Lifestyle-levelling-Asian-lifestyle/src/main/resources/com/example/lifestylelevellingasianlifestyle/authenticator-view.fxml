@@ -4,9 +4,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.lifestylelevellingasianlifestyle.AuthenticatorController">
+            fx:controller="com.example.lifestylelevellingasianlifestyle.AuthenticatorController"
+            stylesheets="@login.css">
 
     <center>
         <StackPane>
