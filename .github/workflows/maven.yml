@@ -1,0 +1,35 @@
+name: Maven Build
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven
+        working-directory: Lifestyle-levelling-Asian-lifestyle
+        run: mvn package
+
+      - name: Generate Javadoc
+        working-directory: Lifestyle-levelling-Asian-lifestyle
+        run: mvn javadoc:javadoc
+
+      - name: Publish Javadoc
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: Lifestyle-levelling-Asian-lifestyle/target/docs/javadoc

@@ -8,9 +8,17 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 
-
+/**
+ * Retrieves the current user's approximate location using their IP address
+ * Done by an external geolocation service
+ */
 public class IPService {
 
+    /**
+     * Retrieve location
+     * @return an object containing city and coordinates (lat and long)
+     * @throws IOException error while communicating
+     */
     public LocationData getIp() throws IOException {
 
         String urlString = String.format(

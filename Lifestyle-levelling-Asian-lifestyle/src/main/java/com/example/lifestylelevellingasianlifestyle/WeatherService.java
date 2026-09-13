@@ -8,8 +8,18 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 
+/**
+ * Class to retrieve and process weather information through an external weather service
+ * Done through the API provided
+ */
 public class WeatherService {
 
+    /**
+     * Retrieves the current weather for a specified location
+     * @param latitude lat coordinate of current user
+     * @param longitude long coordinate of current user
+     * @return a string containing result
+     */
     public String getWeather(double latitude, double longitude) {
 
         String urlString = String.format(
@@ -74,6 +84,11 @@ public class WeatherService {
         }
     }
 
+    /**
+     * Converts weather code into a weather description
+     * @param weatherCode numerical code given by the external service
+     * @return a pre-written response corresponding to the code
+     */
     private String resolveCode(int weatherCode) {
         String weatherType;
         switch (weatherCode) {
@@ -169,7 +184,11 @@ public class WeatherService {
         return weatherType;
     }
 
-
+    /**
+     * Converts integer to a boolean
+     * @param theInt integert to convert, represents a boolean
+     * @return boolean values, true or false
+     */
     boolean intToBooleanWithThrowing(int theInt) {
         if (theInt == 1) {
             return true;
