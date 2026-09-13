@@ -11,7 +11,7 @@ import java.net.URL;
 
 public class IPService {
 
-    public String getIp() throws IOException {
+    public LocationData getIp() throws IOException {
 
         String urlString = String.format(
                 "https://geoapi.info/api/geo"
@@ -52,8 +52,11 @@ public class IPService {
                             Colat + " latatude & " + Colong + " longitude!");
 
             con.disconnect();
-
-            return "1";
+            return new LocationData(
+                    cityName,
+                    Colat,
+                    Colong
+            );
 
         } catch (Exception e) {
             e.printStackTrace();
