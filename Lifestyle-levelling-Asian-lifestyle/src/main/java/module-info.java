@@ -3,6 +3,7 @@ module com.example.lifestylelevellingasianlifestyle {
     requires javafx.fxml;
     requires java.sql;
     requires jbcrypt;
+    requires org.json;
 
 
     opens com.example.lifestylelevellingasianlifestyle to javafx.fxml;

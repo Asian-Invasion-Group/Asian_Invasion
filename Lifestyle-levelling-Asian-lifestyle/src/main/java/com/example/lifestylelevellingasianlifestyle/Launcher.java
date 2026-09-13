@@ -16,6 +16,14 @@ public class Launcher extends Application {
         stage.setTitle("Login / Sign Up");
         stage.setScene(scene);
         stage.show();
+        IPService ipService = new IPService();
+
+        try {
+            String result = ipService.getIp();
+            System.out.println("Result: " + result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
