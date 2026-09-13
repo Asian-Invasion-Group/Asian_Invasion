@@ -1,10 +1,20 @@
 package com.example.lifestylelevellingasianlifestyle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
+import java.io.IOException;
+
+/**
+ * Controls the Login and Signup UI
+ * Handles user authentication, email validation and navigation between pages
+ */
 public class AuthenticatorController {
 
     @FXML private VBox loginPane;
@@ -17,46 +27,84 @@ public class AuthenticatorController {
     @FXML private PasswordField signUpPasswordField;
     @FXML private PasswordField signUpConfirmField;
 
-    //auth
     private final AuthenticationService authenticationService = new AuthenticationService();
-    //check email regex
+
+    /**
+     * Checks whether the email that User provided is a valid email address
+     * Compares with expected email formate
+     * @param email the given email by the user
+     * @return true or false based on whether the email is valid
+     */
     private boolean isValidEmail(String email) {
         return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
     }
+
+    /**
+     * Displays signup page
+     */
     @FXML
     private void showSignUp() {
         loginPane.setVisible(false);
         signUpPane.setVisible(true);
     }
 
+    /**
+     * Displays login page
+     */
     @FXML
     private void showLogin() {
         signUpPane.setVisible(false);
         loginPane.setVisible(true);
     }
 
+    /**
+     * Authenticate user with provided email and password
+     * If successful, userID is stored in current session
+     * Homepage is displayed
+     */
     @FXML
     private void onLogin() {
 
         String user = loginUsernameField.getText();
         String pass = loginPasswordField.getText();
 
-        //check email valid
         if (!isValidEmail(user)){
-            //UI notification invalid email
+            //POPUP NOTIFICATION OF INVALID EMAIL
             return;
         }
 
-        if (authenticationService.login(user, pass)){
-            //success
-            //go to homepage
+        int userId = authenticationService.login(user, pass);
+
+        if (userId != -1){
+            Session.setUserId(userId);
+            System.out.println(Session.getUserId());
+
+            try{
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("homepage.fxml")
+                );
+
+                Parent root = loader.load();
+
+                Stage stage = (Stage)loginUsernameField.getScene().getWindow();
+
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }else{
-            //fail
-            //UI notification login failed
+            //FAILED LOGIN
+            //POPUP NOTIFICATION OF LOGIN FAILED
         }
 
     }
 
+    /**
+     * Validates signing up details
+     * Creates a new user account
+     * If successful, transfer to login
+     */
     @FXML
     private void onSignUp() {
 
@@ -64,31 +112,27 @@ public class AuthenticatorController {
         String pass = signUpPasswordField.getText();
         String confirm = signUpConfirmField.getText();
 
-        //check email valid
         if (!isValidEmail(user)){
-            //UI notification not a valid email
+            //POPUP NOTIFCATION OF INVALID EMAIL
             return;
         }
 
-        //check empty field
         if (user.isEmpty() || pass.isEmpty()){
-            //UI notification fill in all fields
+            //POPUP NOTIFICATION TO FILL IN ALL FIELDS
             return;
         }
 
-        //check passwords match
         if (!pass.equals(confirm)){
-            //UI notification passwords do not match
+            //POPUP NOTIFICATIONS OF PASSWORDS DO NOT MATCH
             return;
         }
 
-        //create account
+        //Create Account
         if (authenticationService.signUp(user,pass)){
-            //success
             showLogin();
         }else{
-            //fail due to email in use
-            //UI notification email in use
+            //FAILED SIGNUP
+            //POPUP NOTIFICATION OF EMAIL IN USE
         }
     }
 

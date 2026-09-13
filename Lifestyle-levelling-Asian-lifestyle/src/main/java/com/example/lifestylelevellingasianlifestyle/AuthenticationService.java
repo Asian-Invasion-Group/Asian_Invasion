@@ -1,15 +1,22 @@
 package com.example.lifestylelevellingasianlifestyle;
 
-import org.mindrot.jbcrypt.BCrypt;//hashing
+import org.mindrot.jbcrypt.BCrypt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
+/**
+ * A class that handles authentication such as signing up as a new user or logging in as an existing user.
+ */
 public class AuthenticationService {
+    /**
+     * Method to sign up as a new user
+     * @param email the email of user
+     * @param password the chosen password of user
+     * @return true or false based on whether sign up was successful
+     */
     public boolean signUp(String email, String password) {
 
-        //hashing
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
         String sql = "INSERT INTO users (password, email) VALUES (?, ?)";
@@ -25,9 +32,9 @@ public class AuthenticationService {
             return true;
 
         } catch (SQLException e) {
-            //email in use
+            //Email in use
             if (e.getMessage().contains("UNIQUE constraint failed: users.email")){
-                //UI for email in use
+                //ADD POPUP NOTIFICATION
             }else{
                 e.printStackTrace();
             }
@@ -36,9 +43,15 @@ public class AuthenticationService {
         }
     }
 
-    public boolean login(String email, String password) {
+    /**
+     * Method to log in as an existing user
+     * @param email the email of the user
+     * @param password the chosen password of the user
+     * @return the userId from the database of the current logged in user
+     */
+    public int login(String email, String password) {
 
-        String sql = "SELECT password FROM users WHERE email = ?";
+        String sql = "SELECT userId, password FROM users WHERE email = ?";
 
         try (Connection conn = Database.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -48,16 +61,19 @@ public class AuthenticationService {
             var result = stmt.executeQuery();
 
             if (result.next()) {
+                int userId = result.getInt("userID");
                 String storedHash = result.getString("password");
 
-                return BCrypt.checkpw(password, storedHash);
+                if (BCrypt.checkpw(password, storedHash)){
+                    return userId;
+                }
             }
 
-            return false;
+            return -1;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return -1;
         }
     }
 }
