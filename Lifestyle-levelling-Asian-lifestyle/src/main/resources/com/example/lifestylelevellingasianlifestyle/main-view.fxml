@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.lifestylelevellingasianlifestyle.MainController"
+            stylesheets="@app.css" styleClass="app-root">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12" styleClass="top-bar">
+            <Label text="☘" styleClass="top-mark" />
+            <VBox spacing="1">
+                <Label text="Lifestyle Levelling" styleClass="top-title" />
+                <Label text="Your sustainability hub" styleClass="top-subtitle" />
+            </VBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="userEmailLabel" styleClass="user-chip" />
+            <Button text="Sign out" onAction="#onSignOut" styleClass="quiet-button" />
+        </HBox>
+    </top>
+
+    <center>
+        <TabPane fx:id="mainTabs" tabClosingPolicy="UNAVAILABLE" styleClass="main-tabs">
+            <tabs>
+                <Tab text="Overview">
+                    <content>
+                        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="page-scroll">
+                            <VBox spacing="18" styleClass="page">
+                                <HBox alignment="CENTER_LEFT">
+                                    <VBox spacing="4">
+                                        <Label text="Good choices start here" styleClass="page-title" />
+                                        <Label text="Your most useful actions, all in one place." styleClass="page-subtitle" />
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Button text="Refresh overview" onAction="#onRefreshAll" styleClass="secondary-button" />
+                                </HBox>
+
+                                <HBox spacing="14">
+                                    <VBox spacing="7" styleClass="metric-card" HBox.hgrow="ALWAYS">
+                                        <Label text="CURRENT GROCERIES" styleClass="eyebrow" />
+                                        <Label fx:id="dashboardGroceryCountLabel" text="0" styleClass="metric-value" />
+                                        <Label fx:id="dashboardGroceryDetailLabel" text="No items yet" styleClass="metric-detail" wrapText="true" />
+                                    </VBox>
+                                    <VBox spacing="7" styleClass="metric-card" HBox.hgrow="ALWAYS">
+                                        <Label text="LATEST ELECTRICITY" styleClass="eyebrow" />
+                                        <Label fx:id="dashboardElectricityLabel" text="—" styleClass="metric-value" />
+                                        <Label fx:id="dashboardElectricityDetailLabel" text="Add your first bill" styleClass="metric-detail" wrapText="true" />
+                                    </VBox>
+                                    <VBox spacing="7" styleClass="metric-card" HBox.hgrow="ALWAYS">
+                                        <Label text="NEXT OUTDOOR DAY" styleClass="eyebrow" />
+                                        <Label fx:id="dashboardWeatherLabel" text="Check weather" styleClass="metric-value-small" wrapText="true" />
+                                        <Label text="Uses your latest forecast" styleClass="metric-detail" />
+                                    </VBox>
+                                </HBox>
+
+                                <VBox spacing="12" styleClass="content-card">
+                                    <Label text="Today's sustainable actions" styleClass="section-title" />
+                                    <Label text="Start with the item that has the biggest immediate impact." styleClass="section-copy" />
+                                    <VBox fx:id="dashboardActionsBox" spacing="10">
+                                        <Label text="Add groceries, an electricity bill, or a weather location to get personalised actions." styleClass="empty-copy" wrapText="true" />
+                                    </VBox>
+                                </VBox>
+                            </VBox>
+                        </ScrollPane>
+                    </content>
+                </Tab>
+
+                <Tab text="Groceries">
+                    <content>
+                        <VBox spacing="16" styleClass="page">
+                            <VBox spacing="4">
+                                <Label text="Grocery inventory" styleClass="page-title" />
+                                <Label text="Track what you have and use items before they expire." styleClass="page-subtitle" />
+                            </VBox>
+                            <SplitPane dividerPositions="0.31" VBox.vgrow="ALWAYS" styleClass="clean-split">
+                                <items>
+                                    <VBox spacing="11" styleClass="content-card form-card">
+                                        <Label text="Add or update an item" styleClass="section-title" />
+                                        <Label text="Item name" styleClass="field-label" />
+                                        <TextField fx:id="groceryNameField" promptText="e.g. Spinach" />
+                                        <Label text="Category" styleClass="field-label" />
+                                        <ComboBox fx:id="groceryCategoryBox" maxWidth="Infinity" promptText="Choose category" />
+                                        <HBox spacing="8">
+                                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                                <Label text="Quantity" styleClass="field-label" />
+                                                <TextField fx:id="groceryQuantityField" promptText="1" />
+                                            </VBox>
+                                            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                                <Label text="Unit" styleClass="field-label" />
+                                                <ComboBox fx:id="groceryUnitBox" maxWidth="Infinity" promptText="unit" />
+                                            </VBox>
+                                        </HBox>
+                                        <Label text="Purchased" styleClass="field-label" />
+                                        <DatePicker fx:id="groceryPurchaseDatePicker" maxWidth="Infinity" />
+                                        <Label text="Expiry / best before" styleClass="field-label" />
+                                        <DatePicker fx:id="groceryExpiryDatePicker" maxWidth="Infinity" />
+                                        <Label fx:id="groceryFormStatusLabel" styleClass="inline-status" wrapText="true" />
+                                        <Button fx:id="grocerySaveButton" text="Add item" onAction="#onSaveGrocery" maxWidth="Infinity" styleClass="primary-button" />
+                                        <Button text="Clear form" onAction="#onClearGroceryForm" maxWidth="Infinity" styleClass="quiet-button" />
+                                    </VBox>
+
+                                    <VBox spacing="11" styleClass="content-card">
+                                        <HBox alignment="CENTER_LEFT" spacing="10">
+                                            <TextField fx:id="grocerySearchField" promptText="Search inventory…" HBox.hgrow="ALWAYS" />
+                                            <Button text="Edit selected" onAction="#onEditGrocery" styleClass="secondary-button" />
+                                            <Button text="Remove" onAction="#onDeleteGrocery" styleClass="danger-button" />
+                                        </HBox>
+                                        <TableView fx:id="groceryTable" VBox.vgrow="ALWAYS">
+                                            <placeholder>
+                                                <Label text="No groceries yet — add your first item on the left." styleClass="empty-copy" />
+                                            </placeholder>
+                                            <columns>
+                                                <TableColumn fx:id="groceryNameColumn" text="Item" prefWidth="150" />
+                                                <TableColumn fx:id="groceryCategoryColumn" text="Category" prefWidth="105" />
+                                                <TableColumn fx:id="groceryQuantityColumn" text="Quantity" prefWidth="100" />
+                                                <TableColumn fx:id="groceryExpiryColumn" text="Expiry" prefWidth="110" />
+                                                <TableColumn fx:id="groceryStatusColumn" text="Priority" prefWidth="120" />
+                                            </columns>
+                                        </TableView>
+                                        <VBox spacing="5" styleClass="recommendation-box">
+                                            <Label text="Use first" styleClass="eyebrow" />
+                                            <Label fx:id="groceryRecommendationLabel" text="Add an item to receive a recommendation." wrapText="true" styleClass="recommendation-text" />
+                                        </VBox>
+                                    </VBox>
+                                </items>
+                            </SplitPane>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Electricity">
+                    <content>
+                        <VBox spacing="16" styleClass="page">
+                            <VBox spacing="4">
+                                <Label text="Electricity tracker" styleClass="page-title" />
+                                <Label text="Compare monthly usage and turn your bills into practical reductions." styleClass="page-subtitle" />
+                            </VBox>
+                            <SplitPane dividerPositions="0.31" VBox.vgrow="ALWAYS" styleClass="clean-split">
+                                <items>
+                                    <VBox spacing="11" styleClass="content-card form-card">
+                                        <Label text="Record a monthly bill" styleClass="section-title" />
+                                        <Label text="Billing month" styleClass="field-label" />
+                                        <DatePicker fx:id="electricityMonthPicker" maxWidth="Infinity" />
+                                        <Label text="Usage (kWh)" styleClass="field-label" />
+                                        <TextField fx:id="electricityKwhField" promptText="e.g. 320" />
+                                        <Label text="Bill amount ($)" styleClass="field-label" />
+                                        <TextField fx:id="electricityBillField" promptText="e.g. 94.50" />
+                                        <Label text="Saving a month again updates it." styleClass="helper-copy" wrapText="true" />
+                                        <Label fx:id="electricityFormStatusLabel" styleClass="inline-status" wrapText="true" />
+                                        <Button text="Save monthly bill" onAction="#onSaveElectricity" maxWidth="Infinity" styleClass="primary-button" />
+                                        <Button text="Delete selected month" onAction="#onDeleteElectricity" maxWidth="Infinity" styleClass="danger-button" />
+                                    </VBox>
+
+                                    <VBox spacing="11" styleClass="content-card">
+                                        <BarChart fx:id="electricityChart" animated="false" legendVisible="false" title="Monthly electricity use" VBox.vgrow="ALWAYS">
+                                            <xAxis><CategoryAxis label="Billing month" /></xAxis>
+                                            <yAxis><NumberAxis label="kWh" forceZeroInRange="true" /></yAxis>
+                                        </BarChart>
+                                        <TableView fx:id="electricityTable" prefHeight="180">
+                                            <placeholder>
+                                                <Label text="Add a monthly bill to start your trend." styleClass="empty-copy" />
+                                            </placeholder>
+                                            <columns>
+                                                <TableColumn fx:id="electricityMonthColumn" text="Month" prefWidth="130" />
+                                                <TableColumn fx:id="electricityKwhColumn" text="Usage (kWh)" prefWidth="130" />
+                                                <TableColumn fx:id="electricityBillColumn" text="Bill ($)" prefWidth="120" />
+                                            </columns>
+                                        </TableView>
+                                        <VBox spacing="5" styleClass="recommendation-box">
+                                            <Label text="YOUR REDUCTION PLAN" styleClass="eyebrow" />
+                                            <Label fx:id="electricityRecommendationLabel" text="Add a bill to create a baseline." wrapText="true" styleClass="recommendation-text" />
+                                        </VBox>
+                                    </VBox>
+                                </items>
+                            </SplitPane>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="Weather">
+                    <content>
+                        <VBox spacing="16" styleClass="page">
+                            <VBox spacing="4">
+                                <Label text="Weather-smart habits" styleClass="page-title" />
+                                <Label text="Find low-rain days for natural drying and comfortable walks." styleClass="page-subtitle" />
+                            </VBox>
+                            <VBox spacing="12" styleClass="content-card">
+                                <HBox alignment="CENTER_LEFT" spacing="10">
+                                    <TextField fx:id="weatherLocationField" promptText="City or suburb (e.g. Brisbane)" HBox.hgrow="ALWAYS" onAction="#onLoadWeather" />
+                                    <Button fx:id="weatherSearchButton" text="Get 7-day forecast" onAction="#onLoadWeather" styleClass="primary-button" />
+                                    <ProgressIndicator fx:id="weatherProgress" visible="false" managed="false" prefWidth="28" prefHeight="28" />
+                                </HBox>
+                                <Label fx:id="weatherStatusLabel" text="Enter a location to get recommendations. No API key is needed." styleClass="inline-status neutral-status" wrapText="true" />
+                                <Label fx:id="weatherSunnyIntervalLabel" styleClass="recommendation-text" wrapText="true" />
+                            </VBox>
+                            <TableView fx:id="weatherTable" VBox.vgrow="ALWAYS">
+                                <placeholder>
+                                    <Label text="Your 7-day forecast will appear here." styleClass="empty-copy" />
+                                </placeholder>
+                                <columns>
+                                    <TableColumn fx:id="weatherDateColumn" text="Date" prefWidth="120" />
+                                    <TableColumn fx:id="weatherSummaryColumn" text="Conditions" prefWidth="150" />
+                                    <TableColumn fx:id="weatherTemperatureColumn" text="Temperature" prefWidth="130" />
+                                    <TableColumn fx:id="weatherRainColumn" text="Rain" prefWidth="110" />
+                                    <TableColumn fx:id="weatherLaundryColumn" text="Hang clothes" prefWidth="155" />
+                                    <TableColumn fx:id="weatherWalkColumn" text="Walk" prefWidth="155" />
+                                </columns>
+                            </TableView>
+                            <HBox spacing="12">
+                                <VBox spacing="5" styleClass="recommendation-box" HBox.hgrow="ALWAYS">
+                                    <Label text="BEST DAY TO DRY CLOTHES" styleClass="eyebrow" />
+                                    <Label fx:id="weatherLaundryLabel" text="Load a forecast first." wrapText="true" styleClass="recommendation-text" />
+                                </VBox>
+                                <VBox spacing="5" styleClass="recommendation-box" HBox.hgrow="ALWAYS">
+                                    <Label text="BEST DAY FOR A WALK" styleClass="eyebrow" />
+                                    <Label fx:id="weatherWalkLabel" text="Load a forecast first." wrapText="true" styleClass="recommendation-text" />
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

@@ -4,36 +4,46 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.lifestylelevellingasianlifestyle.AuthenticatorController"
-            stylesheets="@login.css">
-
+            stylesheets="@login.css" styleClass="auth-root">
     <center>
-        <StackPane>
-            <!-- LOGIN PANE -->
-            <VBox alignment="CENTER" fx:id="loginPane" spacing="10">
-                <Label text="Login" style="-fx-font-size: 20;"  />
-                <TextField fx:id="loginUsernameField" promptText="Username" />
-                <PasswordField fx:id="loginPasswordField" promptText="Password" />
-                <Button text="Login" onAction="#onLogin"/>
-                <Hyperlink text="Sign up" onAction="#showSignUp"  />
+        <VBox alignment="CENTER" spacing="24">
+            <VBox alignment="CENTER" spacing="6">
+                <Label text="☘" styleClass="brand-mark" />
+                <Label text="Lifestyle Levelling" styleClass="brand-title" />
+                <Label text="Small choices. A lighter footprint." styleClass="brand-subtitle" />
             </VBox>
 
-            <!-- SIGN UP PANE -->
-            <VBox alignment="CENTER" fx:id="signUpPane" spacing="10" visible="false">
-                <Label text="Sign Up" style="-fx-font-size: 20;" />
-                <TextField fx:id="signUpUsernameField" promptText="Username" />
-                <PasswordField fx:id="signUpPasswordField" promptText="Password" />
-                <PasswordField fx:id="signUpConfirmField" promptText="Confirm Password" />
-                <Button text="Create Account" onAction="#onSignUp" />
-                <Hyperlink text="Already have an account? Login" onAction="#showLogin"/>
-            </VBox>
-        </StackPane>
+            <StackPane>
+                <VBox alignment="CENTER" fx:id="loginPane" spacing="13" styleClass="auth-card">
+                    <Label text="Welcome back" styleClass="form-title" />
+                    <Label text="Sign in to see today's sustainable actions." styleClass="form-copy" wrapText="true" />
+                    <TextField fx:id="loginUsernameField" promptText="Email address" />
+                    <PasswordField fx:id="loginPasswordField" promptText="Password" onAction="#onLogin" />
+                    <Label fx:id="loginStatusLabel" styleClass="status-label" wrapText="true" />
+                    <Button text="Sign in" onAction="#onLogin" styleClass="primary-button" />
+                    <HBox alignment="CENTER" spacing="4">
+                        <Label text="New here?" styleClass="muted-label" />
+                        <Hyperlink text="Create an account" onAction="#showSignUp" />
+                    </HBox>
+                </VBox>
+
+                <VBox alignment="CENTER" fx:id="signUpPane" spacing="13" visible="false" managed="false" styleClass="auth-card">
+                    <Label text="Create your account" styleClass="form-title" />
+                    <Label text="Your sustainability data stays separated by account." styleClass="form-copy" wrapText="true" />
+                    <TextField fx:id="signUpUsernameField" promptText="Email address" />
+                    <PasswordField fx:id="signUpPasswordField" promptText="Password (8+ characters)" />
+                    <PasswordField fx:id="signUpConfirmField" promptText="Confirm password" onAction="#onSignUp" />
+                    <Label fx:id="signUpStatusLabel" styleClass="status-label" wrapText="true" />
+                    <Button text="Create account" onAction="#onSignUp" styleClass="primary-button" />
+                    <Hyperlink text="Back to sign in" onAction="#showLogin" />
+                </VBox>
+            </StackPane>
+        </VBox>
     </center>
-
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets top="28" right="28" bottom="28" left="28"/>
     </padding>
 </BorderPane>
