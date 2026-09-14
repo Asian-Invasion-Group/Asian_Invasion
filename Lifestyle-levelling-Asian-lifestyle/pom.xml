@@ -11,7 +11,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>17</maven.compiler.release>
         <junit.version>5.12.1</junit.version>
+        <jackson.version>2.18.3</jackson.version>
+        <lifestyle.db.path>data/users.db</lifestyle.db.path>
     </properties>
 
     <dependencies>
@@ -39,6 +42,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
@@ -50,11 +59,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20250517</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -64,9 +68,13 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <release>17</release>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.2</version>
             </plugin>
             <plugin>
                 <groupId>org.openjfx</groupId>
@@ -78,8 +86,11 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.lifestylelevellingasianlifestyle/com.example.lifestylelevellingasianlifestyle.HelloApplication
+                                com.example.lifestylelevellingasianlifestyle/com.example.lifestylelevellingasianlifestyle.Launcher
                             </mainClass>
+                            <options>
+                                <option>-Dlifestyle.db.path=${lifestyle.db.path}</option>
+                            </options>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
@@ -89,15 +100,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.4.0</version>
-                <configuration>
-                    <destDir>javadoc</destDir>
-                    <reportOutputDirectory>${project.build.directory}/docs</reportOutputDirectory>
-                </configuration>
             </plugin>
         </plugins>
     </build>
