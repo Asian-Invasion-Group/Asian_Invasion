@@ -3,48 +3,60 @@ package com.example.lifestylelevellingasianlifestyle;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
-/**
- * Main entry point for application
- */
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Locale;
 public class Launcher extends Application {
 
-    /**
-     * Starts the application and display authentication screen
-     * @param stage the primary stage for this application, onto which
-     * the application scene can be set.
-     * Applications may create other stages, if needed, but they will not be
-     * primary stages.
-     * @throws Exception error while loading application
-     */
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
+        try {
+            Database.initialize();
+            showAuthentication(stage);
+        } catch (SQLException | IOException e) {
+            System.err.println("Application startup failed: " + e.getClass().getSimpleName());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Lifestyle Levelling");
+            alert.setHeaderText("The application could not start");
+            alert.setContentText("Local storage could not be prepared. Check that the data folder is writable, then restart the application.");
+            alert.showAndWait();
+        }
+    }
+
+    public static void showAuthentication(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(
                 Launcher.class.getResource("authenticator-view.fxml")
         );
-        Scene scene = new Scene(fxmlLoader.load(), 400, 300);
-        stage.setTitle("Login / Sign Up");
+        Scene scene = new Scene(fxmlLoader.load(), 480, 600);
+        stage.setTitle("Lifestyle Levelling");
+        stage.setMinWidth(440);
+        stage.setMinHeight(560);
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
-
-        IPService ipService = new IPService();
-        WeatherService weatherService = new WeatherService();
-
-        LocationData location = ipService.getIp();
-        AIService aiService = new AIService();
-        String text = weatherService.getWeather(location.latitude(), location.longitude());
-        System.out.println(location.cityName());
-        System.out.println(location.latitude());
-        System.out.println(location.longitude());
-        System.out.println(aiService.queryAI("Why is the sky blue?"));
     }
 
-    /**
-     * Launches the application
-     * @param args command line
-     */
+    public static void showMain(Window sourceWindow, AuthenticationService.UserSession session) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Launcher.class.getResource("main-view.fxml"));
+        Scene scene = new Scene(loader.load(), 1220, 780);
+        MainController controller = loader.getController();
+        controller.setSession(session);
+
+        Stage stage = (Stage) sourceWindow;
+        stage.setTitle("Lifestyle Levelling — Sustainability Dashboard");
+        stage.setMinWidth(1050);
+        stage.setMinHeight(680);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.show();
+    }
+
     public static void main(String[] args) {
+        Locale.setDefault(Locale.ENGLISH);
         launch();
     }
 

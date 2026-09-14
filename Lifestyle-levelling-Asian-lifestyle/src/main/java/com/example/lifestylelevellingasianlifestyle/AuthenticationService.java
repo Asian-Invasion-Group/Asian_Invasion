@@ -1,22 +1,30 @@
 package com.example.lifestylelevellingasianlifestyle;
 
-import org.mindrot.jbcrypt.BCrypt;
+import org.mindrot.jbcrypt.BCrypt;//hashing
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.Optional;
 
-/**
- * A class that handles authentication such as signing up as a new user or logging in as an existing user.
- */
+
 public class AuthenticationService {
-    /**
-     * Method to sign up as a new user
-     * @param email the email of user
-     * @param password the chosen password of user
-     * @return true or false based on whether sign up was successful
-     */
     public boolean signUp(String email, String password) {
 
+        return signUpWithResult(email, password) == SignUpResult.SUCCESS;
+    }
+
+    public SignUpResult signUpWithResult(String email, String password) {
+
+        if (email == null || password == null || password.length() < 8) {
+            return SignUpResult.INVALID_INPUT;
+        }
+        String normalizedEmail = email.trim().toLowerCase(Locale.ROOT);
+        if (!normalizedEmail.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+            return SignUpResult.INVALID_INPUT;
+        }
+
+        //hashing
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
         String sql = "INSERT INTO users (password, email) VALUES (?, ?)";
@@ -25,55 +33,65 @@ public class AuthenticationService {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, hashedPassword);
-            stmt.setString(2, email);
+            stmt.setString(2, normalizedEmail);
 
             stmt.executeUpdate();
 
-            return true;
+            return SignUpResult.SUCCESS;
 
         } catch (SQLException e) {
-            //Email in use
-            if (e.getMessage().contains("UNIQUE constraint failed: users.email")){
-                //ADD POPUP NOTIFICATION
-            }else{
-                e.printStackTrace();
+            // SQLite extended codes vary, but the primary constraint code is stable.
+            if (e.getErrorCode() == 19) {
+                return SignUpResult.DUPLICATE_EMAIL;
             }
-
-            return false;
+            System.err.println("Account registration storage error: " + e.getClass().getSimpleName());
+            return SignUpResult.STORAGE_ERROR;
         }
     }
 
-    /**
-     * Method to log in as an existing user
-     * @param email the email of the user
-     * @param password the chosen password of the user
-     * @return the userId from the database of the current logged in user
-     */
-    public int login(String email, String password) {
+    public boolean login(String email, String password) {
 
-        String sql = "SELECT userId, password FROM users WHERE email = ?";
+        return authenticate(email, password).isPresent();
+    }
+
+    public Optional<UserSession> authenticate(String email, String password) {
+
+        if (email == null || password == null || email.isBlank() || password.isEmpty()) {
+            return Optional.empty();
+        }
+
+        String sql = "SELECT userId, password, email FROM users WHERE lower(email) = lower(?)";
 
         try (Connection conn = Database.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, email);
+            stmt.setString(1, email.trim());
 
             var result = stmt.executeQuery();
 
             if (result.next()) {
-                int userId = result.getInt("userID");
                 String storedHash = result.getString("password");
 
-                if (BCrypt.checkpw(password, storedHash)){
-                    return userId;
+                if (BCrypt.checkpw(password, storedHash)) {
+                    return Optional.of(new UserSession(result.getInt("userId"), result.getString("email")));
                 }
             }
 
-            return -1;
+            return Optional.empty();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return -1;
+        } catch (SQLException | IllegalArgumentException e) {
+            System.err.println("Authentication failed because local storage could not be read.");
+            return Optional.empty();
         }
+    }
+
+    public record UserSession(int userId, String email) {
+    }
+
+    public enum SignUpResult {
+        SUCCESS,
+        DUPLICATE_EMAIL,
+        INVALID_INPUT,
+        STORAGE_ERROR
     }
 }

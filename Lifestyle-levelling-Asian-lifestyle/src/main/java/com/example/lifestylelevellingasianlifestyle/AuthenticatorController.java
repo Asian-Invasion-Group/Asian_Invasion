@@ -1,20 +1,14 @@
 package com.example.lifestylelevellingasianlifestyle;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
 
-/**
- * Controls the Login and Signup UI
- * Handles user authentication, email validation and navigation between pages
- */
 public class AuthenticatorController {
 
     @FXML private VBox loginPane;
@@ -26,114 +20,109 @@ public class AuthenticatorController {
     @FXML private TextField signUpUsernameField;
     @FXML private PasswordField signUpPasswordField;
     @FXML private PasswordField signUpConfirmField;
+    @FXML private Label loginStatusLabel;
+    @FXML private Label signUpStatusLabel;
 
+    //auth
     private final AuthenticationService authenticationService = new AuthenticationService();
-
-    /**
-     * Checks whether the email that User provided is a valid email address
-     * Compares with expected email formate
-     * @param email the given email by the user
-     * @return true or false based on whether the email is valid
-     */
+    //check email regex
     private boolean isValidEmail(String email) {
-        return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
+        return email != null && email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     }
-
-    /**
-     * Displays signup page
-     */
     @FXML
     private void showSignUp() {
         loginPane.setVisible(false);
+        loginPane.setManaged(false);
         signUpPane.setVisible(true);
+        signUpPane.setManaged(true);
+        loginStatusLabel.setText("");
     }
 
-    /**
-     * Displays login page
-     */
     @FXML
     private void showLogin() {
         signUpPane.setVisible(false);
+        signUpPane.setManaged(false);
         loginPane.setVisible(true);
+        loginPane.setManaged(true);
+        signUpStatusLabel.setText("");
     }
 
-    /**
-     * Authenticate user with provided email and password
-     * If successful, userID is stored in current session
-     * Homepage is displayed
-     */
     @FXML
     private void onLogin() {
 
-        String user = loginUsernameField.getText();
+        String user = loginUsernameField.getText().trim().toLowerCase(Locale.ROOT);
         String pass = loginPasswordField.getText();
 
+        loginStatusLabel.getStyleClass().removeAll("status-success");
+        if (user.isEmpty() || pass.isEmpty()) {
+            showLoginError("Enter both your email and password.");
+            return;
+        }
         if (!isValidEmail(user)){
-            //POPUP NOTIFICATION OF INVALID EMAIL
+            showLoginError("Enter a valid email address.");
             return;
         }
 
-        int userId = authenticationService.login(user, pass);
-
-        if (userId != -1){
-            Session.setUserId(userId);
-            System.out.println(Session.getUserId());
-
-            try{
-                FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("homepage.fxml")
-                );
-
-                Parent root = loader.load();
-
-                Stage stage = (Stage)loginUsernameField.getScene().getWindow();
-
-                stage.setScene(new Scene(root));
-                stage.show();
+        authenticationService.authenticate(user, pass).ifPresentOrElse(session -> {
+            loginStatusLabel.setText("Opening your dashboard…");
+            loginStatusLabel.getStyleClass().add("status-success");
+            try {
+                Launcher.showMain(loginPane.getScene().getWindow(), session);
             } catch (IOException e) {
-                e.printStackTrace();
+                showLoginError("The dashboard could not be opened. Please try again.");
             }
-        }else{
-            //FAILED LOGIN
-            //POPUP NOTIFICATION OF LOGIN FAILED
-        }
+        }, () -> showLoginError("Email or password is incorrect."));
 
     }
 
-    /**
-     * Validates signing up details
-     * Creates a new user account
-     * If successful, transfer to login
-     */
     @FXML
     private void onSignUp() {
 
-        String user = signUpUsernameField.getText();
+        String user = signUpUsernameField.getText().trim().toLowerCase(Locale.ROOT);
         String pass = signUpPasswordField.getText();
         String confirm = signUpConfirmField.getText();
 
+        signUpStatusLabel.getStyleClass().removeAll("status-success");
+        if (user.isEmpty() || pass.isEmpty() || confirm.isEmpty()) {
+            showSignUpError("Complete all fields.");
+            return;
+        }
         if (!isValidEmail(user)){
-            //POPUP NOTIFCATION OF INVALID EMAIL
+            showSignUpError("Enter a valid email address.");
             return;
         }
 
-        if (user.isEmpty() || pass.isEmpty()){
-            //POPUP NOTIFICATION TO FILL IN ALL FIELDS
+        if (pass.length() < 8) {
+            showSignUpError("Use at least 8 characters for your password.");
             return;
         }
 
         if (!pass.equals(confirm)){
-            //POPUP NOTIFICATIONS OF PASSWORDS DO NOT MATCH
+            showSignUpError("Passwords do not match.");
             return;
         }
 
-        //Create Account
-        if (authenticationService.signUp(user,pass)){
-            showLogin();
-        }else{
-            //FAILED SIGNUP
-            //POPUP NOTIFICATION OF EMAIL IN USE
+        switch (authenticationService.signUpWithResult(user, pass)) {
+            case SUCCESS -> {
+                loginUsernameField.setText(user);
+                showLogin();
+                loginStatusLabel.setText("Account created. Sign in to continue.");
+                loginStatusLabel.getStyleClass().add("status-success");
+            }
+            case DUPLICATE_EMAIL -> showSignUpError("An account with that email already exists.");
+            case INVALID_INPUT -> showSignUpError("Check the email and use a password with at least 8 characters.");
+            case STORAGE_ERROR -> showSignUpError("The account could not be saved. Please try again.");
         }
+    }
+
+    private void showLoginError(String message) {
+        loginStatusLabel.setText(message);
+        loginStatusLabel.getStyleClass().removeAll("status-success");
+    }
+
+    private void showSignUpError(String message) {
+        signUpStatusLabel.setText(message);
+        signUpStatusLabel.getStyleClass().removeAll("status-success");
     }
 
 }
