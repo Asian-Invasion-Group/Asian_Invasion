@@ -25,8 +25,28 @@ public class HomepageController {
     private Button existingGroceriesButton;
 
     /**
-     * Navigates to the temporary Grocery List
+     * Navigates to the Grocery Page
      */
+
+    @FXML
+    private void  onGrocery(){
+
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("grocery.fxml")
+            );
+
+            Parent root = loader.load();
+            Stage stage = (Stage) Grocery.getScene().getWindow();
+            stage.setScene((new Scene(root)));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @FXML
     private void onGroceryList() {
 
