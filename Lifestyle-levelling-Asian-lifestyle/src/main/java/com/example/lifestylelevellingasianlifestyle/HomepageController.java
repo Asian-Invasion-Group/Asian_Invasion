@@ -16,6 +16,9 @@ import java.io.IOException;
 public class HomepageController {
 
     @FXML
+    public Button Grocery;
+
+    @FXML
     private Button groceryListButton;
 
     @FXML
