@@ -15,7 +15,7 @@
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
             <Button layoutY="-2.0" mnemonicParsing="false" prefHeight="111.0" prefWidth="125.0" text="Profile" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-2.0" />
-   
+
                      <Label alignment="TOP_CENTER" text="Grocery" textOverrun="CLIP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
@@ -28,7 +28,6 @@
       <VBox prefHeight="200.0" prefWidth="107.0" BorderPane.alignment="CENTER">
          <children>
             <Button id="Home" mnemonicParsing="false" prefHeight="237.0" prefWidth="107.0" text="Home" />
-            <Button id="Grocery" fx:id="Grocery" mnemonicParsing="false" onAction="#onExistingGroceries" prefHeight="237.0" prefWidth="108.0" text="Grocery" />
             <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="108.0" text="Weather" />
             <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="108.0" text="Utility Track " />
          </children>
@@ -49,9 +48,9 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="400.0" prefWidth="250.0">
                      <children>
-                        <TableView prefHeight="249.0" prefWidth="245.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="groceryTable" prefHeight="249.0" prefWidth="245.0" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                             <TableColumn fx:id="nameColumn" text="Item Name" />
+                             <TableColumn fx:id="existingNameColumn" text="Item Name" />
                              <TableColumn fx:id="expiryColumn" text="Expiry Date" />
                              <TableColumn fx:id="dateAddedColumn" text="Date Added" />
                           </columns>
@@ -62,7 +61,7 @@
                      <children>
                         <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Button onAction="#onRemoveItem" text="Remove Selected" />
+                              <Button onAction="#onRemoveExistingItem" text="Remove Selected" />
                            </children>
                         </HBox>
                      </children>
@@ -82,9 +81,9 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="400.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="-8.666666666666666" prefHeight="248.0" prefWidth="253.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-9.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="groceryListTable" layoutX="-8.666666666666666" prefHeight="248.0" prefWidth="253.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-9.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
                            <columns>
-                              <TableColumn fx:id="nameColumn" text="Item Name"/>
+                              <TableColumn fx:id="groceryNameColumn" text="Item Name"/>
                               <TableColumn fx:id="quantityColumn" text="Quantity"/>
                            </columns>
                         </TableView>
@@ -95,7 +94,7 @@
                         <HBox prefHeight="25.0" prefWidth="237.0">
                            <children>
                               <Button onAction="#onAddItem" prefHeight="25.0" prefWidth="61.0" text="Add" />
-                              <Button onAction="#onRemoveItem" text="Remove" />
+                              <Button onAction="#onRemoveListItem" text="Remove" />
                               <Button onAction="#onMoveToExisting" prefHeight="25.0" prefWidth="120.0" text="Move to Existing" />
                            </children>
                         </HBox>
