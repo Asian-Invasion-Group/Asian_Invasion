@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="450.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lifestylelevellingasianlifestyle.HomepageController">
+    <top>
+        <AnchorPane BorderPane.alignment="CENTER">
+            <children>
+                <Button layoutY="-2.0" mnemonicParsing="false" prefHeight="111.0" prefWidth="125.0" text="Profile" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-2.0" />
+
+                <Label alignment="TOP_CENTER" text="Utilities" textOverrun="CLIP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                    <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </top>
+    <left>
+        <VBox prefHeight="200.0" prefWidth="107.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button id="Home" fx:id="homeButton" mnemonicParsing="false" onAction="#onHome" prefHeight="237.0" prefWidth="107.0" text="Home" />
+                <Button id="Grocery" fx:id="Grocery" mnemonicParsing="false" onAction="#onGroceries" prefHeight="237.0" prefWidth="108.0" text="Grocery" />
+                <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="108.0" text="Weather" />
+                <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="108.0" text="Utility Track " />
+            </children>
+        </VBox>
+    </left>
+    <center>
+        <ScrollPane fitToWidth="true" BorderPane.alignment="CENTER">
+            <content>
+                <VBox prefWidth="551.0" spacing="20">
+                    <padding>
+                        <Insets bottom="15" left="15" right="15" top="15" />
+                    </padding>
+                    <children>
+                        <HBox spacing="15">
+                            <children>
+                                <VBox spacing="5" styleClass="summary-card" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label style="-fx-font-weight: bold;" text="Electricity" />
+                                        <Label fx:id="electricityCostLabel" style="-fx-font-size: 20px;" text="\$0" />
+                                        <Label fx:id="electricityUsageLabel" text="0 kWh" />
+                                    </children>
+                                </VBox>
+                                <VBox spacing="5" styleClass="summary-card" HBox.hgrow="ALWAYS">
+                                    <children>
+                                        <Label style="-fx-font-weight: bold;" text="Water" />
+                                        <Label fx:id="waterCostLabel" style="-fx-font-size: 20px;" text="\$0" />
+                                        <Label fx:id="waterUsageLabel" text="0 L" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" spacing="10">
+                            <children>
+                                <Label text="Range:" />
+                                <ComboBox fx:id="rangeComboBox" promptText="This Month" />
+                            </children>
+                        </HBox>
+
+                        <TabPane fx:id="usageTabPane" prefHeight="300.0" prefWidth="598.0" tabClosingPolicy="UNAVAILABLE">
+                            <tabs>
+                                <Tab text="Electricity Usage">
+                                    <content>
+                                        <LineChart fx:id="electricityChart">
+                                            <xAxis>
+                                                <CategoryAxis label="Date" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis label="kWh" />
+                                            </yAxis>
+                                        </LineChart>
+                                    </content>
+                                </Tab>
+                                <Tab text="Water Usage">
+                                    <content>
+                                        <LineChart fx:id="waterChart">
+                                            <xAxis>
+                                                <CategoryAxis label="Date" />
+                                            </xAxis>
+                                            <yAxis>
+                                                <NumberAxis label="Litres" />
+                                            </yAxis>
+                                        </LineChart>
+                                    </content>
+                                </Tab>
+                            </tabs>
+                        </TabPane>
+                        <VBox spacing="5" styleClass="stats-footer">
+                            <children>
+                                <Label fx:id="dailyAvgLabel" text="Daily average: 10.4 kWh" />
+                                <Label fx:id="vsLastMonthLabel" text="vs last month: +12%" />
+                                <Label fx:id="estimatedBillLabel" text="Estimated bill: \$84.20" />
+                            </children>
+                        </VBox>
+
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>
