@@ -28,7 +28,7 @@
             <Button id="Home" fx:id="homeButton" mnemonicParsing="false" onAction="#onHome" prefHeight="237.0" prefWidth="107.0" text="Home" />
             <Button id="Grocery" fx:id="Grocery" mnemonicParsing="false" onAction="#onGroceries" prefHeight="237.0" prefWidth="108.0" text="Grocery" />
             <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="108.0" text="Weather" />
-            <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="108.0" text="Utility Track " />
+            <Button fx:id="utilityButton" mnemonicParsing="false" onAction="#onUtilities" prefHeight="237.0" prefWidth="108.0" text="Utility Track " />
          </children>
       </VBox>
    </left>

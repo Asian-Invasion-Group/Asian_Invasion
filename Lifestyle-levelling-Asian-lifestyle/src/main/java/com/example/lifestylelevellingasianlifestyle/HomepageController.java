@@ -31,6 +31,9 @@ public class HomepageController {
     public Button homeButton;
 
     @FXML
+    public Button utilityButton;
+
+    @FXML
     private TableView<ExistingGrocery> groceryTable;
 
     @FXML
@@ -136,6 +139,27 @@ public class HomepageController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Navigates to the Electricity Tracker.
+     */
+    @FXML
+    private void onUtilities() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("water-electricityusage.fxml")
+            );
+
+            Parent root = loader.load();
+            Stage stage = (Stage) utilityButton.getScene().getWindow();
+
+            stage.setScene(new Scene(root, 720, 450));
+            stage.setTitle("Electricity Tracker");
+            stage.show();
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 

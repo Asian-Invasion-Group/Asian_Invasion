@@ -29,7 +29,7 @@
          <children>
             <Button id="Home" mnemonicParsing="false" prefHeight="237.0" prefWidth="107.0" text="Home" />
             <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="108.0" text="Weather" />
-            <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="108.0" text="Utility Track " />
+            <Button fx:id="utilityButton" mnemonicParsing="false" onAction="#onUtilities" prefHeight="237.0" prefWidth="108.0" text="Utility Track " />
          </children>
       </VBox>
    </left>

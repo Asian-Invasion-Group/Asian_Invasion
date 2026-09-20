@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc4a0559-d387-4757-bcbd-b0e879619e65" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/users.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/lifestylelevellingasianlifestyle/HomepageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/lifestylelevellingasianlifestyle/HomepageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/lifestylelevellingasianlifestyle/homepage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/lifestylelevellingasianlifestyle/homepage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/lifestylelevellingasianlifestyle/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/lifestylelevellingasianlifestyle/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/lifestylelevellingasianlifestyle/grocery.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/lifestylelevellingasianlifestyle/grocery.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/lifestylelevellingasianlifestyle/home-dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/lifestylelevellingasianlifestyle/home-dashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/lifestylelevellingasianlifestyle/water-electricityusage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/lifestylelevellingasianlifestyle/water-electricityusage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,16 +75,24 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Project",
+    "last_opened_file_path": "E:/2026年下半年/Asian_Invasion-main/Asian_Invasion",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.JavaFX"
+    "settings.editor.selected.configurable": "preferences.JavaFX",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager" selected="Application.Launcher">
     <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.lifestylelevellingasianlifestyle.Launcher" />
       <module name="Lifestyle-levelling-Asian-lifestyle" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.lifestylelevellingasianlifestyle.*" />
@@ -103,6 +116,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Launcher" />
+      <item itemvalue="Application.launcher" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Launcher" />
@@ -116,10 +133,12 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.31033.145" />
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
       </set>
     </attachedChunks>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="bc4a0559-d387-4757-bcbd-b0e879619e65" name="Changes" comment="" />
@@ -127,8 +146,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1787914739689</updated>
+      <workItem from="1789916029868" duration="3204000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

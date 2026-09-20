@@ -28,16 +28,16 @@ public class Launcher extends Application {
         stage.setScene(scene);
         stage.show();
 
-        IPService ipService = new IPService();
-        WeatherService weatherService = new WeatherService();
-
-        LocationData location = ipService.getIp();
-        AIService aiService = new AIService();
-        String text = weatherService.getWeather(location.latitude(), location.longitude());
-        System.out.println(location.cityName());
-        System.out.println(location.latitude());
-        System.out.println(location.longitude());
-        System.out.println(aiService.queryAI("Why is the sky blue?"));
+//        IPService ipService = new IPService();
+//        WeatherService weatherService = new WeatherService();
+//
+//        LocationData location = ipService.getIp();
+//        AIService aiService = new AIService();
+//        String text = weatherService.getWeather(location.latitude(), location.longitude());
+//        System.out.println(location.cityName());
+//        System.out.println(location.latitude());
+//        System.out.println(location.longitude());
+//        System.out.println(aiService.queryAI("Why is the sky blue?"));
     }
 
     /**
