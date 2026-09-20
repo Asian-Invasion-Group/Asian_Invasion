@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc4a0559-d387-4757-bcbd-b0e879619e65" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/users.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/users.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/lifestylelevellingasianlifestyle/HomepageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/lifestylelevellingasianlifestyle/HomepageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/lifestylelevellingasianlifestyle/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/lifestylelevellingasianlifestyle/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/lifestylelevellingasianlifestyle/grocery.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/lifestylelevellingasianlifestyle/grocery.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/lifestylelevellingasianlifestyle/home-dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/lifestylelevellingasianlifestyle/home-dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/lifestylelevellingasianlifestyle/water-electricityusage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/lifestylelevellingasianlifestyle/water-electricityusage.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +139,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1787914739689</updated>
-      <workItem from="1789916029868" duration="3204000" />
+      <workItem from="1789916029868" duration="3405000" />
     </task>
     <servers />
   </component>
