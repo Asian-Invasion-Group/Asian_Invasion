@@ -106,7 +106,7 @@ public class ExistingGroceryController {
         try {
 
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("homepage.fxml")
+                    getClass().getResource("home-dashboard.fxml")
             );
 
             Parent root = loader.load();
