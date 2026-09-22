@@ -1,6 +1,6 @@
 # Lifestyle Levelling
 
-This ***Lifestyle Levelling project*** is part of CAB302 Agile Project Development at Queensland University of Technology. Our team, **Asian Invasion** — [Jammie Chen](https://github.com/Jammie-C), [William Qu](https://github.com/willisepic21), [Brooklyn Diep](https://github.com/BD5799), [Hui Colin Wu](https://github.com/Ka-319), and [Mingyuan Lyu](https://github.com/Mingyuan220) — worked together on everything as equal contributors. We’re all about keeping things simple and practical, building an app that makes it easy to track groceries, electricity use, and weather‑based habits without any fuss. 
+This ***Lifestyle Levelling project*** is part of CAB302 Agile Project Development at Queensland University of Technology. Our team, **Asian Invasion** — [Jammie Chen](https://github.com/Jammie-C), [William Qu](https://github.com/willisepic21), [Brooklyn Diep](https://github.com/BD5799) and [Hui Colin Wu](https://github.com/Ka-319)) — worked together on everything as equal contributors. We’re all about keeping things simple and practical, building an app that makes it easy to track groceries, electricity use, and weather‑based habits without any fuss. 
 
 ---
 
