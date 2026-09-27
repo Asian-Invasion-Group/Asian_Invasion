@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,6 +96,28 @@ public class HomepageController {
 
             groceryTable.getSelectionModel()
                     .setSelectionMode(SelectionMode.SINGLE);
+
+            //Colour rows
+            groceryTable.setRowFactory(tableView -> new TableRow<ExistingGrocery>(){
+                @Override
+                protected void updateItem(ExistingGrocery item, boolean empty){
+                    super.updateItem(item, empty);
+                    if (empty||item == null){
+                        setStyle("");
+                        return;
+                    }
+                    LocalDate expiryDate = LocalDate.parse(item.getExpiryDate());
+                    LocalDate today = LocalDate.now();
+                    long daysUntilExpiry = ChronoUnit.DAYS.between(today, expiryDate);
+                    if (daysUntilExpiry <= 3){
+                        setStyle("-fx-background-color: #ff9999;");
+                    }else if(daysUntilExpiry <=7){
+                        setStyle("-fx-background-color: #ffcc80;");
+                    }else{
+                        setStyle("");
+                    }
+                }
+            });
         }
 
         // Grocery List table
