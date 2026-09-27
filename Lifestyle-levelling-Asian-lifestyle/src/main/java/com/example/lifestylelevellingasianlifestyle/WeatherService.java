@@ -1,12 +1,14 @@
 package com.example.lifestylelevellingasianlifestyle;
 
 import org.json.JSONObject;
+import org.json.JSONArray;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.util.Arrays;
 
 public class WeatherService {
 
@@ -50,6 +52,7 @@ public class WeatherService {
 
 
             JSONObject jsonObject = new JSONObject(jsonBuffer.toString());
+//            JSONArray jsonArray = new JSONArray(jsonBuffer.toString());
             JSONObject curently = jsonObject.getJSONObject("current");
             String simpleCurrentWeather = resolveCode(curently.getInt("weather_code"));
             boolean isDay = intToBooleanWithThrowing((curently.getInt("is_day")));
@@ -58,8 +61,24 @@ public class WeatherService {
 //            JSONObject forecast = jsonObject.getJSONObject("coordinates");
 //            double Colat = forecast.getDouble("latitude");
 //            double Colong= forecast.getDouble("longitude");
-            System.out.println("Its currently " + currentTemp + " degrees and " +
+
+            JSONObject hourly = jsonObject.getJSONObject("hourly");
+            JSONArray times =hourly.getJSONArray("time");
+            JSONArray temperatures = hourly.getJSONArray("temperature_2m");
+
+
+            String[] temperaturess = getTemperatures(jsonBuffer.toString());
+
+//            for (int i = 0; i < times.length(); i++) {
+//                String hourTime = times.getString(i);
+//                double hourTemp = temperatures.getDouble(i);
+//                String timeOnly = hourTime.split("T")[1];
+//                data.get().setTemperatureData(timeOnly,hourTemp);
+//            }
+
+            System.out.println("It is currently " + currentTemp + " degrees with " +
                     simpleCurrentWeather + "!");
+            System.out.println(Arrays.toString(temperaturess));
 
             con.disconnect();
             return "-1";
@@ -165,7 +184,7 @@ public class WeatherService {
                 System.out.println("Invalid Code");
                 weatherType = "";
         }
-        System.out.println(weatherType);
+        //System.out.println(weatherType);
         return weatherType;
     }
 
@@ -180,6 +199,23 @@ public class WeatherService {
         throw new IllegalArgumentException("Invalid input, Only 0 or 1 is allowed.");
     }
 
+    public String[] getTemperatures(String json) {
+        JSONObject jsonObject = new JSONObject(json);
+
+        JSONObject hourly = jsonObject.getJSONObject("hourly");
+        JSONArray time = hourly.getJSONArray("time");
+        JSONArray WeatherCode = hourly.getJSONArray("weather_code");
+        JSONArray rain = hourly.getJSONArray("rain");
+        JSONArray temperatures = hourly.getJSONArray("temperature_2m");
+
+        String[] temperatureArray = new String[temperatures.length()];
+
+        for (int i = 0; i < temperatures.length(); i++) {
+            temperatureArray[i] = time.getString(i) + "/" +  temperatures.getDouble(i) + "/" + rain.getInt(i) + "/" + resolveCode(WeatherCode.getInt(i));
+        }
+
+        return temperatureArray;
+    }
 
 
 //    public class weatherCodes {

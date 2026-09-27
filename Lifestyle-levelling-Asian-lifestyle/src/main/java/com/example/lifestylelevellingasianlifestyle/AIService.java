@@ -29,7 +29,7 @@ public class AIService {
             // template stuff rn
             String jsonInputString = "{'model': 'nvidia/nemotron-3-ultra-550b-a55b:free','messages': [{'role': 'user', 'content': '"+ message +"'}]}";
             con.setConnectTimeout(2500);
-            con.setReadTimeout(3000000);
+            con.setReadTimeout(900000000);
             OutputStream os = con.getOutputStream();
             OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
             osw.write(jsonInputString);
