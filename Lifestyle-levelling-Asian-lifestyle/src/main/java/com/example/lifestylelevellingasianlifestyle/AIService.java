@@ -7,8 +7,16 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 
-
+/**
+ * Functionality for querying to an external AI service through an API and retrieving response
+ */
 public class AIService {
+    /**
+     * Sends a query to AI
+     * @param message that is sent to external AI
+     * @return the generated response
+     * @throws IOException if error occurs while querying
+     */
     public String queryAI(String message) throws IOException {
 
         String urlString = String.format(

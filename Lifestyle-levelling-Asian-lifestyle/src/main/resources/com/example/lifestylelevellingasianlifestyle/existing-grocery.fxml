@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lifestylelevellingasianlifestyle.ExistingGroceryController">
+   <children>
+      <BorderPane>
+      
+          <top>
+              <VBox alignment="CENTER">
+                  <Label text="Existing Groceries" />
+              </VBox>
+          </top>
+      
+          <center>
+              <TableView fx:id="groceryTable">
+      
+                  <columns>
+      
+                      <TableColumn fx:id="nameColumn" text="Item Name" />
+      
+                      <TableColumn fx:id="expiryColumn" text="Expiry Date" />
+      
+                      <TableColumn fx:id="dateAddedColumn" text="Date Added" />
+
+                  </columns>
+      
+              </TableView>
+          </center>
+      
+          <bottom>
+              <HBox alignment="CENTER" spacing="10">
+      
+                  <Button onAction="#onRemoveItem" text="Remove Selected" />
+      
+                  <Button onAction="#onBackToHomepage" text="Back to Homepage" />
+      
+              </HBox>
+          </bottom>
+      
+      </BorderPane>
+   </children>
+</AnchorPane>
