@@ -13,7 +13,7 @@
          <children>
             <Button layoutY="-2.0" mnemonicParsing="false" prefHeight="111.0" prefWidth="125.0" text="Profile" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-2.0" />
 
-                     <Label alignment="TOP_CENTER" text="Grocery" textOverrun="CLIP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                     <Label alignment="TOP_CENTER" text="Weather" textOverrun="CLIP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
                </font>
