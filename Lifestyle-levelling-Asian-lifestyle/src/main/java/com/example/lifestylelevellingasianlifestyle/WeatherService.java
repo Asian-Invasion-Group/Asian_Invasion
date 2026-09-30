@@ -1,5 +1,7 @@
 package com.example.lifestylelevellingasianlifestyle;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
@@ -15,6 +17,13 @@ import java.util.Arrays;
  * Done through the API provided
  */
 public class WeatherService {
+
+    @FXML
+    public Button groceryButton;
+    @FXML
+    public Button homeButton;
+    @FXML
+    public Button utilityButton;
 
     /**
      * Retrieves the current weather for a specified location
@@ -236,6 +245,29 @@ public class WeatherService {
         return temperatureArray;
     }
 
+    /**
+     * Navigates back to the Home page
+     */
+    @FXML
+    private void onHome() {
+        NavigationController.onHome(homeButton);
+    }
+
+    /**
+     * Navigates to the Grocery Tab
+     */
+    @FXML
+    private void onGroceries() {
+        NavigationController.onGroceries(groceryButton);
+    }
+
+    /**
+     * Navigates to the Electricity Tracker.
+     */
+    @FXML
+    private void onUtilities() {
+        NavigationController.onUtilities(utilityButton);
+    }
 
 //    public class weatherCodes {
 //        public String resolveCode(int code) {

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="450.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lifestylelevellingasianlifestyle.HomepageController">
+<BorderPane prefHeight="450.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lifestylelevellingasianlifestyle.WeatherService">
    <top>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
@@ -24,9 +24,32 @@
    <left>
       <VBox prefHeight="200.0" prefWidth="107.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="Home" mnemonicParsing="false" prefHeight="237.0" prefWidth="107.0" text="Home" />
-            <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="108.0" text="Weather" />
-            <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="108.0" text="Utility Track " />
+            <Button fx:id="homeButton"
+                    mnemonicParsing="false"
+                    onAction="#onHome"
+                    prefHeight="237.0"
+                    prefWidth="107.0"
+                    text="Home" />
+
+            <Button fx:id="groceryButton"
+                    mnemonicParsing="false"
+                    onAction="#onGroceries"
+                    prefHeight="237.0"
+                    prefWidth="108.0"
+                    text="Grocery" />
+
+            <Button fx:id="weatherButton"
+                    mnemonicParsing="false"
+                    prefHeight="237.0"
+                    prefWidth="108.0"
+                    text="Weather" />
+
+            <Button fx:id="utilityButton"
+                    mnemonicParsing="false"
+                    onAction="#onUtilities"
+                    prefHeight="237.0"
+                    prefWidth="108.0"
+                    text="Utility Track" />
          </children>
       </VBox>
    </left>
