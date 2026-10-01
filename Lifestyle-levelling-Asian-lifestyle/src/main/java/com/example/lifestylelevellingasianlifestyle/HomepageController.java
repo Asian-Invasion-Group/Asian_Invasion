@@ -37,15 +37,6 @@ public class HomepageController {
     }
 
     /**
-     * Navigates back to login page and clears the session ID
-     */
-    @FXML
-    private void onSignout() {
-        Session.setUserId(-1);
-        NavigationController.onSignout(signoutButton);
-    }
-
-    /**
      * Navigates back to the Home page
      */
     @FXML
@@ -60,4 +51,14 @@ public class HomepageController {
     private void onWeather(){
         NavigationController.onWeather(weatherButton);
     }
+
+    /**
+     * Navigates back to login page and clears the session ID
+     */
+    @FXML
+    private void onSignout() {
+        Session.setUserId(-1);
+        NavigationController.onSignout(signoutButton);
+    }
+
 }
