@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="850.0" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lifestylelevellingasianlifestyle.HomepageController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lifestylelevellingasianlifestyle.HomepageController">
    <top>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="50.0">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
             <Button fx:id="profileButton" layoutY="-2.0" mnemonicParsing="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-2.0">
                <graphic>
                   <ImageView fitHeight="131.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true">
@@ -16,14 +26,13 @@
                         <Image url="@../../../Images/Profile.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-   
-                     <Label alignment="TOP_CENTER" text="Welcome to Lifestyle Levelling, [Username]" textOverrun="CLIP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+               </graphic>
+            </Button>
+            <Button fx:id="signoutButton" mnemonicParsing="false" onAction="#onSignout" text="Sign Out" AnchorPane.bottomAnchor="55.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="55.0">
                <font>
-                  <Font name="System Bold Italic" size="24.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
-            </Label>
-            <Button fx:id="signoutButton" mnemonicParsing="false" onAction="#onSignout" text="Sign Out" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="40.0" />
+            </Button>
          </children>
       </AnchorPane>
    </top>
@@ -38,7 +47,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="Grocery" mnemonicParsing="false" onAction="#onGroceries" prefHeight="100.0">
+            <Button fx:id="groceryButton" mnemonicParsing="false" onAction="#onGroceries" prefHeight="100.0">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -65,4 +74,8 @@
          </children>
       </VBox>
    </left>
+   <stylesheets>
+      <URL value="@dashboard.css" />
+      <URL value="@navigationStyle.css" />
+   </stylesheets>
 </BorderPane>

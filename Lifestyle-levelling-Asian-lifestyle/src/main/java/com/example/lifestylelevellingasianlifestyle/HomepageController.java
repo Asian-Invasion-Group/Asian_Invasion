@@ -10,7 +10,7 @@ import javafx.scene.control.*;
 public class HomepageController {
 
     @FXML
-    public Button Grocery;
+    public Button groceryButton;
     @FXML
     public Button homeButton;
     @FXML
@@ -25,7 +25,7 @@ public class HomepageController {
      */
     @FXML
     private void onGroceries() {
-        NavigationController.onGroceries(Grocery);
+        NavigationController.onGroceries(groceryButton);
     }
 
     /**
