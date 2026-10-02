@@ -68,6 +68,7 @@ public class WeatherService {
             boolean isDay = intToBooleanWithThrowing((curently.getInt("is_day")));
             int currentTemp = curently.getInt("temperature_2m");
             int currentWeatherCode = curently.getInt("weather_code");
+            String[] recommendations = getRecommendations(jsonBuffer.toString());
 //            JSONObject forecast = jsonObject.getJSONObject("coordinates");
 //            double Colat = forecast.getDouble("latitude");
 //            double Colong= forecast.getDouble("longitude");
@@ -77,7 +78,7 @@ public class WeatherService {
             JSONArray temperatures = hourly.getJSONArray("temperature_2m");
 
 
-            String[] temperaturess = getTemperatures(jsonBuffer.toString());
+            String[] temperaturess = getRecommendations(jsonBuffer.toString());
 
 //            for (int i = 0; i < times.length(); i++) {
 //                String hourTime = times.getString(i);
@@ -218,8 +219,107 @@ public class WeatherService {
         throw new IllegalArgumentException("Invalid input, Only 0 or 1 is allowed.");
     }
 
+    public String[] getRecommendations(String json) {
+        JSONObject jsonObject = new JSONObject(json);
+
+        JSONObject current = jsonObject.getJSONObject("current");
+        String simpleCurrentWeather = resolveCode(current.getInt("weather_code"));
+        boolean isDay = intToBooleanWithThrowing(current.getInt("is_day"));
+        int currentTemp = current.getInt("temperature_2m");
+        int currentWeatherCode = current.getInt("weather_code");
+
+        JSONObject hourly = jsonObject.getJSONObject("hourly");
+
+        JSONArray time = hourly.getJSONArray("time");
+        JSONArray weatherCode = hourly.getJSONArray("weather_code");
+        JSONArray rain = hourly.getJSONArray("rain");
+        JSONArray temperatures = hourly.getJSONArray("temperature_2m");
+
+        String[] temperatureArray = new String[temperatures.length()];
+
+        boolean goodWeather = false;
+        String goodWeatherStart = null;
+        String goodWeatherEnd = null;
+
+        for (int i = 0; i < temperatures.length(); i++) {
+            int temp = temperatures.getInt(i);
+            int code = weatherCode.getInt(i);
+            double rainAmount = rain.getDouble(i);
+            String recommendation;
+
+            if (temp >= 38) {
+                recommendation = "Stay indoors & keep cool";
+            }
+            else if (isHeavyRain(code, rainAmount)) {
+                recommendation = "Stay indoors & avoid the rain";
+            }
+            else if (isRain(code, rainAmount)) {
+                recommendation = "Take an umbrella";
+            }
+            else if (temp <= 10) {
+                recommendation = "Bring a jacket & stay warm";
+            }
+            else if (temp >= 30) {
+                recommendation = "Remember to hydrate";
+            }
+            else if (temp > 14 && temp < 30 && isGoodWeather(code)) {
+                recommendation = "Go for a run & hang your laundry";
+            }
+            else if (temp > 14 && temp < 30 && isGoodWeather(code)) {
+                recommendation = "Great weather to go outside";
+            }
+
+            else {
+                recommendation = "Enjoy your day";
+            }
+
+            /*
+             * Track continuous periods of good weather.
+             */
+            if (isGoodWeather(code) && temp > 14 && temp < 30) {
+                if (!goodWeather) {
+                    goodWeather = true;
+                    goodWeatherStart = time.getString(i);
+                }
+            } else if (goodWeather) {
+                goodWeather = false;
+                goodWeatherEnd = time.getString(i);
+            }
+
+            temperatureArray[i] =
+                    time.getString(i)
+                            + "/"
+                            + temperatures.getDouble(i)
+                            + "/"
+                            + rain.getDouble(i)
+                            + "/"
+                            + resolveCode(code)
+                            + "/"
+                            + recommendation;
+        }
+        return temperatureArray;
+    }
+
+
+
+    private boolean isGoodWeather(int weatherCode) {
+        return weatherCode >= 0 && weatherCode <= 2;
+    }
+
+    private boolean isRain(int weatherCode, double rainAmount) {
+        return (weatherCode >= 51 && weatherCode <= 57) || (weatherCode >= 61 && weatherCode <= 67) || (weatherCode >= 80 && weatherCode <= 82)  || rainAmount > 0;
+    }
+
+    private boolean isHeavyRain(int weatherCode, double rainAmount) {
+        return weatherCode == 65 || weatherCode == 67 || weatherCode == 82 || weatherCode >= 95 || rainAmount >= 5.0;
+    }
+
+
     public String[] getTemperatures(String json) {
         JSONObject jsonObject = new JSONObject(json);
+
+
+
 
         JSONObject hourly = jsonObject.getJSONObject("hourly");
         JSONArray time = hourly.getJSONArray("time");
