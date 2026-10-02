@@ -1,0 +1,13 @@
+
+/* Target the main root BorderPane component */
+.root {
+    /* 1. Sets the global background color for the entire application canvas */
+    -fx-background-color: #598BAF; /* Modern dark gray slate */
+}
+
+/* Fixes text visibility globally across your newly dark BorderPane interface */
+.root .label {
+    -fx-text-fill: #FFFFFF;
+}
+
+
