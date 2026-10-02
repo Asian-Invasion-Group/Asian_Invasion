@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="566.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lifestylelevellingasianlifestyle.HomepageController">
+<BorderPane minHeight="566.0" minWidth="850.0" stylesheets="@dashboard.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lifestylelevellingasianlifestyle.HomepageController">
    <top>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
@@ -32,7 +32,7 @@
       </AnchorPane>
    </top>
    <left>
-      <VBox prefHeight="200.0" prefWidth="107.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="107.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="homeButton" mnemonicParsing="false" onAction="#onHome" prefHeight="237.0" prefWidth="107.0">
                <graphic>
