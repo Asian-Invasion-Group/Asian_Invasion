@@ -12,7 +12,6 @@
 <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="850.0" stylesheets="@background.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lifestylelevellingasianlifestyle.HomepageController">
    <top>
       <AnchorPane BorderPane.alignment="CENTER">
-         <children>
             <Text smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="50.0">
                <font>
                   <Font size="36.0" />
@@ -21,9 +20,7 @@
             <Button fx:id="profileButton" layoutY="-2.0" mnemonicParsing="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-2.0">
                <graphic>
                   <ImageView fitHeight="131.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
                         <Image url="@../../../Images/Profile.png" />
-                     </image>
                   </ImageView>
                </graphic>
             </Button>
@@ -32,45 +29,34 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-         </children>
       </AnchorPane>
    </top>
    <left>
       <VBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
-         <children>
             <Button fx:id="homeButton" mnemonicParsing="false" onAction="#onHome" prefHeight="100.0">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
                         <Image url="@../../../Images/Home.png" />
-                     </image>
                   </ImageView>
                </graphic></Button>
             <Button fx:id="groceryButton" mnemonicParsing="false" onAction="#onGroceries" prefHeight="100.0">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
                         <Image url="@../../../Images/Grocery.png" />
-                     </image>
                   </ImageView>
                </graphic></Button>
             <Button fx:id="weatherButton" mnemonicParsing="false" onAction="#onWeather" prefHeight="100.0">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
                         <Image url="@../../../Images/Weather.png" />
-                     </image>
                   </ImageView>
                </graphic></Button>
             <Button fx:id="utilityButton" mnemonicParsing="false" onAction="#onUtilities" prefHeight="100.0">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
                         <Image url="@../../../Images/Utility.png" />
-                     </image>
                   </ImageView>
                </graphic></Button>
-         </children>
       </VBox>
    </left>
 </BorderPane>

@@ -15,13 +15,10 @@
 <BorderPane prefHeight="540.0" prefWidth="850.0" stylesheets="@background.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lifestylelevellingasianlifestyle.GroceryController">
    <top>
       <AnchorPane BorderPane.alignment="CENTER">
-         <children>
             <Button fx:id="profileButton" layoutY="-2.0" mnemonicParsing="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-2.0">
                <graphic>
                   <ImageView fitHeight="133.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
                         <Image url="@../../../Images/Profile.png" />
-                     </image>
                   </ImageView>
                </graphic></Button>
 
@@ -30,65 +27,49 @@
                   <Font name="System Bold Italic" size="24.0" />
                </font>
             </Label>
-         </children>
       </AnchorPane>
    </top>
    <left>
       <VBox BorderPane.alignment="CENTER">
-         <children>
             <Button fx:id="homeButton" mnemonicParsing="false" onAction="#onHome" prefHeight="100.0">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
                         <Image url="@../../../Images/Home.png" />
-                     </image>
                   </ImageView>
                </graphic></Button>
 
             <Button fx:id="groceryButton" mnemonicParsing="false" onAction="#onGroceries" prefHeight="100.0">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
                         <Image url="@../../../Images/Grocery.png" />
-                     </image>
                   </ImageView>
                </graphic></Button>
 
             <Button fx:id="weatherButton" mnemonicParsing="false" onAction="#onWeather" prefHeight="100.0">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
                         <Image url="@../../../Images/Weather.png" />
-                     </image>
                   </ImageView>
                </graphic></Button>
 
             <Button fx:id="utilityButton" mnemonicParsing="false" onAction="#onUtilities" prefHeight="100.0">
                <graphic>
                   <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
                         <Image url="@../../../Images/Utility.png" />
-                     </image>
                   </ImageView>
                </graphic></Button>
-         </children>
       </VBox>
    </left>
    <center>
       <AnchorPane BorderPane.alignment="CENTER">
-         <children>
             <VBox layoutX="45.0" layoutY="44.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="88.0" AnchorPane.topAnchor="10.0">
-               <children>
                   <AnchorPane>
-                     <children>
                         <Label alignment="CENTER" text="Existing Groceries" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font></Label>
-                     </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="400.0" prefWidth="250.0">
-                     <children>
                         <TableView fx:id="groceryTable" prefHeight="249.0" prefWidth="245.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
                           <columns>
                              <TableColumn fx:id="existingNameColumn" text="Item Name" />
@@ -96,53 +77,37 @@
                              <TableColumn fx:id="dateAddedColumn" text="Date Added" />
                           </columns>
                         </TableView>
-                     </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0">
-                     <children>
                         <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
                               <Button onAction="#onRemoveExistingItem" text="Remove Selected" />
-                           </children>
                         </HBox>
-                     </children>
                   </AnchorPane>
-               </children>
             </VBox>
             <VBox layoutX="329.0" layoutY="70.0" prefHeight="321.0" prefWidth="249.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="10.0">
-               <children>
                   <AnchorPane>
-                     <children>
                         <Label alignment="CENTER" text="Grocery List" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                     </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="400.0" prefWidth="200.0">
-                     <children>
                         <TableView fx:id="groceryListTable" layoutX="-8.666666666666666" prefHeight="248.0" prefWidth="253.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
                            <columns>
                               <TableColumn fx:id="groceryNameColumn" text="Item Name" />
                               <TableColumn fx:id="quantityColumn" text="Quantity" />
                            </columns>
                         </TableView>
-                     </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="243.0">
-                     <children>
                         <HBox prefHeight="25.0" prefWidth="237.0">
-                           <children>
                               <Button onAction="#onAddItem" prefHeight="25.0" prefWidth="61.0" text="Add" />
                               <Button onAction="#onRemoveListItem" text="Remove" />
                               <Button onAction="#onMoveToExisting" prefHeight="25.0" prefWidth="120.0" text="Move to Existing" />
-                           </children>
                         </HBox>
-                     </children>
                   </AnchorPane>
-               </children></VBox>
-         </children>
+               </VBox>
       </AnchorPane>
    </center>
 </BorderPane>
