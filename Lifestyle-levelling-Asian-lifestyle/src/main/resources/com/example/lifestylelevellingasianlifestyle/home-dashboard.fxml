@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="450.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lifestylelevellingasianlifestyle.HomepageController">
+<BorderPane prefHeight="450.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lifestylelevellingasianlifestyle.HomepageController">
    <top>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
@@ -18,7 +18,7 @@
                   <Font name="System Bold Italic" size="24.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" text="Sign Out" onAction="#onSignout" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="40.0" />
+            <Button fx:id="signoutButton" mnemonicParsing="false" text="Sign Out" onAction="#onSignout" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="40.0" />
          </children>
       </AnchorPane>
    </top>
@@ -27,7 +27,7 @@
          <children>
             <Button id="Home" fx:id="homeButton" mnemonicParsing="false" onAction="#onHome" prefHeight="237.0" prefWidth="107.0" text="Home" />
             <Button id="Grocery" fx:id="Grocery" mnemonicParsing="false" onAction="#onGroceries" prefHeight="237.0" prefWidth="108.0" text="Grocery" />
-            <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="108.0" text="Weather" />
+            <Button fx:id="weatherButton" mnemonicParsing="false" onAction="#onWeather" prefHeight="237.0" prefWidth="108.0" text="Weather" />
             <Button fx:id="utilityButton" mnemonicParsing="false" onAction="#onUtilities" prefHeight="237.0" prefWidth="108.0" text="Utility Track " />
          </children>
       </VBox>

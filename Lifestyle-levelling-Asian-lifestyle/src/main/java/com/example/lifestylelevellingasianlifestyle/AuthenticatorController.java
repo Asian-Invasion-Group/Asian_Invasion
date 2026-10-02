@@ -58,6 +58,25 @@ public class AuthenticatorController {
     }
 
     /**
+     * Displays home page
+     */
+    @FXML
+    private void showHomepage(){
+        try {
+            Parent root = FXMLLoader.load(
+                    getClass().getResource("home-dashboard.fxml")
+            );
+
+            Stage stage = (Stage) loginUsernameField.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * Authenticate user with provided email and password
      * If successful, userID is stored in current session
      * Homepage is displayed
@@ -77,22 +96,7 @@ public class AuthenticatorController {
 
         if (userId != -1){
             Session.setUserId(userId);
-            System.out.println(Session.getUserId());
-
-            try{
-                FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource("home-dashboard.fxml")
-                );
-
-                Parent root = loader.load();
-
-                Stage stage = (Stage)loginUsernameField.getScene().getWindow();
-
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            showHomepage();
         }else{
             //FAILED LOGIN
             //POPUP NOTIFICATION OF LOGIN FAILED
