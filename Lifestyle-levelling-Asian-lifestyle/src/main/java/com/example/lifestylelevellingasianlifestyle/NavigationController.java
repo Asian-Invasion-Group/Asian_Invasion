@@ -98,7 +98,7 @@ public class NavigationController {
             );
 
             Stage stage = (Stage) button.getScene().getWindow();
-            stage.setScene(new Scene(root, 720, 450));
+            stage.setScene(new Scene(root, 850, 540));
             stage.setTitle(title);
             stage.show();
 
