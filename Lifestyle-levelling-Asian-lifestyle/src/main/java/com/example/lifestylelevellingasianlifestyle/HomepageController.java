@@ -10,7 +10,7 @@ import javafx.scene.control.*;
 public class HomepageController {
 
     @FXML
-    public Button Grocery;
+    public Button groceryButton;
     @FXML
     public Button homeButton;
     @FXML
@@ -25,7 +25,7 @@ public class HomepageController {
      */
     @FXML
     private void onGroceries() {
-        NavigationController.onGroceries(Grocery);
+        NavigationController.onGroceries(groceryButton);
     }
 
     /**
@@ -34,15 +34,6 @@ public class HomepageController {
     @FXML
     private void onUtilities() {
         NavigationController.onUtilities(utilityButton);
-    }
-
-    /**
-     * Navigates back to login page and clears the session ID
-     */
-    @FXML
-    private void onSignout() {
-        Session.setUserId(-1);
-        NavigationController.onSignout(signoutButton);
     }
 
     /**
@@ -60,4 +51,14 @@ public class HomepageController {
     private void onWeather(){
         NavigationController.onWeather(weatherButton);
     }
+
+    /**
+     * Navigates back to login page and clears the session ID
+     */
+    @FXML
+    private void onSignout() {
+        Session.setUserId(-1);
+        NavigationController.onSignout(signoutButton);
+    }
+
 }

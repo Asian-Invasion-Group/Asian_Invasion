@@ -24,6 +24,8 @@ public class WeatherService {
     public Button homeButton;
     @FXML
     public Button utilityButton;
+    @FXML
+    public Button weatherButton;
 
     /**
      * Retrieves the current weather for a specified location
@@ -353,12 +355,21 @@ public class WeatherService {
         NavigationController.onHome(homeButton);
     }
 
+
     /**
      * Navigates to the Grocery Tab
      */
     @FXML
     private void onGroceries() {
         NavigationController.onGroceries(groceryButton);
+    }
+
+    /**
+     * Navigates to the Weather page
+     */
+    @FXML
+    private void onWeather(){
+        NavigationController.onWeather(weatherButton);
     }
 
     /**
