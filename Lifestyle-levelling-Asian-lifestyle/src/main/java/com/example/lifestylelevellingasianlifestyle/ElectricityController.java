@@ -233,8 +233,7 @@ public class ElectricityController {
      * Navigates to the grocery page.
      */
     @FXML
-    private void onGroceries() {
-        openPage("grocery.fxml", "Grocery", groceryButton);
+    private void onGroceries() {openPage("grocery.fxml", "Grocery", groceryButton);
     }
 
     private void openPage(String resource, String title, Button sourceButton) {

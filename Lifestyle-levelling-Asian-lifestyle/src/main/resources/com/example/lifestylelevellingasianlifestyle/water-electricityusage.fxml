@@ -11,28 +11,30 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="450.0" prefWidth="720.0"
-            xmlns="http://javafx.com/javafx/17.0.14"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.lifestylelevellingasianlifestyle.ElectricityController">
+<BorderPane prefHeight="450.0" prefWidth="720.0" stylesheets="@background.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lifestylelevellingasianlifestyle.ElectricityController">
     <top>
         <AnchorPane BorderPane.alignment="CENTER">
             <children>
-                <Button layoutY="-2.0" mnemonicParsing="false" prefHeight="111.0"
-                        prefWidth="125.0" text="Profile"
-                        AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-2.0" />
-                <Label alignment="TOP_CENTER" text="Electricity Tracker" textOverrun="CLIP"
-                       AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                       AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                <Button fx:id="profileButton" layoutY="-2.0" mnemonicParsing="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-2.0">
+                    <graphic>
+                        <ImageView fitHeight="133.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../Images/Profile.png" />
+                            </image>
+                        </ImageView>
+                    </graphic></Button>
+                <Label alignment="TOP_CENTER" text="Electricity Tracker" textOverrun="CLIP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                     <font>
                         <Font name="System Bold Italic" size="24.0" />
                     </font>
@@ -44,14 +46,41 @@
     <left>
         <VBox prefHeight="200.0" prefWidth="107.0" BorderPane.alignment="CENTER">
             <children>
-                <Button fx:id="homeButton" mnemonicParsing="false" onAction="#onHome"
-                        prefHeight="237.0" prefWidth="107.0" text="Home" />
-                <Button fx:id="groceryButton" mnemonicParsing="false" onAction="#onGroceries"
-                        prefHeight="237.0" prefWidth="108.0" text="Grocery" />
-                <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="108.0"
-                        text="Weather" />
-                <Button mnemonicParsing="false" prefHeight="237.0" prefWidth="108.0"
-                        text="Utility Track" />
+                <Button fx:id="homeButton" mnemonicParsing="false" onAction="#onHome" prefHeight="100.0">
+                    <graphic>
+                        <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../Images/Home.png" />
+                            </image>
+                        </ImageView>
+                    </graphic></Button>
+
+                <Button fx:id="groceryButton" mnemonicParsing="false" onAction="#onGroceries" prefHeight="100.0">
+                    <graphic>
+                        <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../Images/Grocery.png" />
+                            </image>
+                        </ImageView>
+                    </graphic></Button>
+
+                <Button fx:id="weatherButton" mnemonicParsing="false" prefHeight="100.0">
+                    <graphic>
+                        <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../Images/Weather.png" />
+                            </image>
+                        </ImageView>
+                    </graphic></Button>
+
+                <Button fx:id="utilityButton" mnemonicParsing="false" prefHeight="100.0">
+                    <graphic>
+                        <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../Images/Utility.png" />
+                            </image>
+                        </ImageView>
+                    </graphic></Button>
             </children>
         </VBox>
     </left>
@@ -81,60 +110,48 @@
                                 <Label text="Usage (kWh)" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                                 <Label text="Bill amount ($)" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
-                                <DatePicker fx:id="electricityMonthPicker" maxWidth="Infinity"
-                                            GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                                <TextField fx:id="electricityUsageField" promptText="e.g. 320.5"
-                                           GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <TextField fx:id="electricityBillField" promptText="e.g. 92.40"
-                                           GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                <DatePicker fx:id="electricityMonthPicker" maxWidth="Infinity" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <TextField fx:id="electricityUsageField" promptText="e.g. 320.5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <TextField fx:id="electricityBillField" promptText="e.g. 92.40" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                             </children>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
                         </GridPane>
 
                         <HBox alignment="CENTER_LEFT" spacing="8.0">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#onSaveElectricity"
-                                        text="Save Month" />
-                                <Button mnemonicParsing="false" onAction="#onClearElectricity"
-                                        text="Clear" />
-                                <Label fx:id="electricityStatusLabel" wrapText="true"
-                                       HBox.hgrow="ALWAYS" />
+                                <Button mnemonicParsing="false" onAction="#onSaveElectricity" text="Save Month" />
+                                <Button mnemonicParsing="false" onAction="#onClearElectricity" text="Clear" />
+                                <Label fx:id="electricityStatusLabel" wrapText="true" HBox.hgrow="ALWAYS" />
                             </children>
                         </HBox>
 
                         <HBox spacing="12.0">
                             <children>
-                                <VBox spacing="4.0"
-                                      style="-fx-background-color: #f4f6f8; -fx-padding: 12; -fx-background-radius: 8;"
-                                      HBox.hgrow="ALWAYS">
+                                <VBox spacing="4.0" style="-fx-background-color: #f4f6f8; -fx-padding: 12; -fx-background-radius: 8;" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <Label text="Latest Bill" style="-fx-font-weight: bold;" />
-                                        <Label fx:id="electricityCostLabel" text="\$0.00"
-                                               style="-fx-font-size: 20px;" />
+                                        <Label style="-fx-font-weight: bold;" text="Latest Bill" />
+                                        <Label fx:id="electricityCostLabel" style="-fx-font-size: 20px;" text="\$0.00" />
                                     </children>
                                 </VBox>
-                                <VBox spacing="4.0"
-                                      style="-fx-background-color: #f4f6f8; -fx-padding: 12; -fx-background-radius: 8;"
-                                      HBox.hgrow="ALWAYS">
+                                <VBox spacing="4.0" style="-fx-background-color: #f4f6f8; -fx-padding: 12; -fx-background-radius: 8;" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <Label text="Latest Usage" style="-fx-font-weight: bold;" />
-                                        <Label fx:id="electricityUsageLabel" text="0 kWh"
-                                               style="-fx-font-size: 20px;" />
+                                        <Label style="-fx-font-weight: bold;" text="Latest Usage" />
+                                        <Label fx:id="electricityUsageLabel" style="-fx-font-size: 20px;" text="0 kWh" />
                                     </children>
                                 </VBox>
-                                <VBox spacing="4.0"
-                                      style="-fx-background-color: #f4f6f8; -fx-padding: 12; -fx-background-radius: 8;"
-                                      HBox.hgrow="ALWAYS">
+                                <VBox spacing="4.0" style="-fx-background-color: #f4f6f8; -fx-padding: 12; -fx-background-radius: 8;" HBox.hgrow="ALWAYS">
                                     <children>
-                                        <Label text="Unit Cost" style="-fx-font-weight: bold;" />
-                                        <Label fx:id="electricityRateLabel" text="\$0.000 / kWh"
-                                               style="-fx-font-size: 20px;" />
+                                        <Label style="-fx-font-weight: bold;" text="Unit Cost" />
+                                        <Label fx:id="electricityRateLabel" style="-fx-font-size: 20px;" text="\$0.000 / kWh" />
                                     </children>
                                 </VBox>
                             </children>
                         </HBox>
 
-                        <LineChart fx:id="electricityChart" prefHeight="230.0"
-                                   title="Monthly Electricity Usage">
+                        <LineChart fx:id="electricityChart" prefHeight="230.0" title="Monthly Electricity Usage">
                             <xAxis>
                                 <CategoryAxis label="Month" />
                             </xAxis>
@@ -151,34 +168,25 @@
 
                         <TableView fx:id="electricityTable" prefHeight="190.0">
                             <columns>
-                                <TableColumn fx:id="electricityMonthColumn" prefWidth="125.0"
-                                             text="Month" />
-                                <TableColumn fx:id="electricityUsageColumn" prefWidth="120.0"
-                                             text="Usage" />
-                                <TableColumn fx:id="electricityBillColumn" prefWidth="120.0"
-                                             text="Bill" />
-                                <TableColumn fx:id="electricityRateColumn" prefWidth="120.0"
-                                             text="Cost / kWh" />
+                                <TableColumn fx:id="electricityMonthColumn" prefWidth="125.0" text="Month" />
+                                <TableColumn fx:id="electricityUsageColumn" prefWidth="120.0" text="Usage" />
+                                <TableColumn fx:id="electricityBillColumn" prefWidth="120.0" text="Bill" />
+                                <TableColumn fx:id="electricityRateColumn" prefWidth="120.0" text="Cost / kWh" />
                             </columns>
                             <columnResizePolicy>
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                         </TableView>
 
-                        <Button mnemonicParsing="false" onAction="#onDeleteElectricity"
-                                text="Delete Selected" />
+                        <Button mnemonicParsing="false" onAction="#onDeleteElectricity" text="Delete Selected" />
 
-                        <VBox spacing="5.0"
-                              style="-fx-background-color: #f4f6f8; -fx-padding: 12; -fx-background-radius: 8;">
+                        <VBox spacing="5.0" style="-fx-background-color: #f4f6f8; -fx-padding: 12; -fx-background-radius: 8;">
                             <children>
-                                <Label text="Electricity Insights" style="-fx-font-weight: bold;" />
+                                <Label style="-fx-font-weight: bold;" text="Electricity Insights" />
                                 <Label fx:id="dailyAvgLabel" text="Daily average: 0 kWh" />
-                                <Label fx:id="vsLastMonthLabel"
-                                       text="Add a monthly bill to begin comparing usage." />
-                                <Label fx:id="reductionTargetLabel"
-                                       text="5% reduction target: not available" />
-                                <Label fx:id="recommendationLabel" wrapText="true"
-                                       text="Add your electricity usage and bill amount to receive a recommendation." />
+                                <Label fx:id="vsLastMonthLabel" text="Add a monthly bill to begin comparing usage." />
+                                <Label fx:id="reductionTargetLabel" text="5% reduction target: not available" />
+                                <Label fx:id="recommendationLabel" text="Add your electricity usage and bill amount to receive a recommendation." wrapText="true" />
                             </children>
                         </VBox>
                     </children>
