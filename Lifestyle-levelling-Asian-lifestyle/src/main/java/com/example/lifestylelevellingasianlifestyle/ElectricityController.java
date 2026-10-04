@@ -242,7 +242,7 @@ public class ElectricityController {
             Parent root = loader.load();
             Stage stage = (Stage) sourceButton.getScene().getWindow();
 
-            stage.setScene(new Scene(root, 720, 450));
+            stage.setScene(new Scene(root, 850, 540));
             stage.setTitle(title);
             stage.show();
         } catch (IOException exception) {
