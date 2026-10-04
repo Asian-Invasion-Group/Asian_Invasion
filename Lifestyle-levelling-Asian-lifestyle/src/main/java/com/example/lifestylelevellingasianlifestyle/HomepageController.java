@@ -58,7 +58,7 @@ public class HomepageController {
     @FXML
     private void onSignout() {
         Session.setUserId(-1);
-        NavigationController.onSignout(signoutButton);
+        SignOutController.onSignout(signoutButton);
     }
 
 }

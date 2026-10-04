@@ -66,21 +66,6 @@ public class NavigationController {
     }
 
     /**
-     * Signs out the current user and navigates to the
-     * Login / Sign Up page.
-     *
-     * @param button the button pressed by the user
-     */
-    public static void onSignout(Button button) {
-        Session.setUserId(-1);
-        navigate(
-                button,
-                "authenticator-view.fxml",
-                "Login / Sign Up"
-        );
-    }
-
-    /**
      * Navigates to another page in the application.
      *
      * @param button the button pressed by the user
@@ -107,3 +92,4 @@ public class NavigationController {
         }
     }
 }
+
