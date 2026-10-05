@@ -73,16 +73,12 @@ public class WeatherService {
 
 
             JSONObject jsonObject = new JSONObject(jsonBuffer.toString());
-//            JSONArray jsonArray = new JSONArray(jsonBuffer.toString());
             JSONObject curently = jsonObject.getJSONObject("current");
             String simpleCurrentWeather = resolveCode(curently.getInt("weather_code"));
             boolean isDay = intToBooleanWithThrowing((curently.getInt("is_day")));
             int currentTemp = curently.getInt("temperature_2m");
             int currentWeatherCode = curently.getInt("weather_code");
             String[] recommendations = getRecommendations(jsonBuffer.toString());
-//            JSONObject forecast = jsonObject.getJSONObject("coordinates");
-//            double Colat = forecast.getDouble("latitude");
-//            double Colong= forecast.getDouble("longitude");
 
             JSONObject hourly = jsonObject.getJSONObject("hourly");
             JSONArray times =hourly.getJSONArray("time");
@@ -91,24 +87,12 @@ public class WeatherService {
 
             String[] temperaturess = getRecommendations(jsonBuffer.toString());
 
-//            for (int i = 0; i < times.length(); i++) {
-//                String hourTime = times.getString(i);
-//                double hourTemp = temperatures.getDouble(i);
-//                String timeOnly = hourTime.split("T")[1];
-//                data.get().setTemperatureData(timeOnly,hourTemp);
-//            }
-
             System.out.println("It is currently " + currentTemp + " degrees with " +
                     simpleCurrentWeather + "!");
             System.out.println(Arrays.toString(temperaturess));
 
             con.disconnect();
             return "-1";
-
-
-//            System.out.println(response.toString());
-//            return response.toString();
-
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -328,10 +312,6 @@ public class WeatherService {
 
     public String[] getTemperatures(String json) {
         JSONObject jsonObject = new JSONObject(json);
-
-
-
-
         JSONObject hourly = jsonObject.getJSONObject("hourly");
         JSONArray time = hourly.getJSONArray("time");
         JSONArray WeatherCode = hourly.getJSONArray("weather_code");
@@ -379,101 +359,4 @@ public class WeatherService {
     private void onUtilities() {
         NavigationController.onUtilities(utilityButton);
     }
-
-//    public class weatherCodes {
-//        public String resolveCode(int code) {
-//            String weatherType;
-//            switch (code) {
-//                case 0:
-//                    weatherType = "Clear Sky";
-//                    break;
-//                case 1:
-//                    weatherType = "Mainly Clear";
-//                    break;
-//                case 2:
-//                    weatherType = "Partly Cloudy";
-//                    break;
-//                case 3:
-//                    weatherType = "Overcast";
-//                    break;
-//                case 45:
-//                    weatherType = "Fog";
-//                    break;
-//                case 48:
-//                    weatherType = "Depositing Rime Fog";
-//                    break;
-//                case 51:
-//                    weatherType = "Light Drizzle";
-//                    break;
-//                case 55:
-//                    weatherType = "Intense Drizzle";
-//                    break;
-//                case 53:
-//                    weatherType = "Moderate Drizzle";
-//                    break;
-//                case 56:
-//                    weatherType = "Light Freezing Drizzle";
-//                    break;
-//                case 57:
-//                    weatherType = "Dense Freezing Drizzle";
-//                    break;
-//                case 61:
-//                    weatherType = "Slight Rain";
-//                    break;
-//                case 63:
-//                    weatherType = "Moderate Rain";
-//                    break;
-//                case 65:
-//                    weatherType = "Heavy Rain";
-//                    break;
-//                case 66:
-//                    weatherType = "Light Freezing Rain";
-//                    break;
-//                case 67:
-//                    weatherType = "Heavy Freezing Rain";
-//                    break;
-//                case 71:
-//                    weatherType = "Slight SnowFall";
-//                    break;
-//                case 73:
-//                    weatherType = "Moderate SnowFall";
-//                    break;
-//                case 75:
-//                    weatherType = "Heavy SnowFall";
-//                    break;
-//                case 77:
-//                    weatherType = "Snow Grains";
-//                    break;
-//                case 80:
-//                    weatherType = "Slight Rain Showers";
-//                    break;
-//                case 81:
-//                    weatherType = "Moderate Rain Showers";
-//                    break;
-//                case 82:
-//                    weatherType = "Heavy Rain Showers";
-//                    break;
-//                case 85:
-//                    weatherType = "Slight Snow Showers";
-//                    break;
-//                case 86:
-//                    weatherType = "Heavy Snow Showers";
-//                    break;
-//                case 95:
-//                    weatherType = "ThunderStorm";
-//                    break;
-//                case 96:
-//                    weatherType = "ThunderStorm with Sligh Hail";
-//                    break;
-//                case 99:
-//                    weatherType = "ThunderStorm with Heavy Hail";
-//                    break;
-//                default:
-//                    System.out.println("Invalid Code");
-//                    weatherType = "";
-//            }
-//            System.out.println(weatherType);
-//            return weatherType;
-//        }
-//    }
 }
