@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="600" prefWidth="900" style="-fx-background-color: linear-gradient(to bottom right, #6b9dc2, #4a7a9f);" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+
+    <top>
+        <BorderPane>
+            <padding>
+                <Insets bottom="10" left="20" right="20" top="15" />
+            </padding>
+            <left>
+                <Button fx:id="backButton" style="-fx-background-color: linear-gradient(#2f7bff, #0a3fd1); -fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-radius: 12;" text="&lt;" />
+            </left>
+            <center>
+                <Label style="-fx-font-size: 30; -fx-text-fill: white; -fx-font-weight: bold;" text="Leaderboard" />
+            </center>
+            <right>
+                <Button fx:id="signOutButton" style="-fx-background-color: #ff7a7a; -fx-text-fill: #3b0a0a; -fx-font-weight: bold; -fx-background-radius: 6;" text="Sign Out" />
+            </right>
+        </BorderPane>
+    </top>
+
+    <left>
+        <VBox alignment="TOP_CENTER" prefWidth="170" spacing="12" style="-fx-background-color: #3a68c9; -fx-background-radius: 16;">
+            <BorderPane.margin>
+                <Insets bottom="20" left="20" right="10" top="10" />
+            </BorderPane.margin>
+            <padding>
+                <Insets bottom="20" left="12" right="12" top="20" />
+            </padding>
+
+            <Label style="-fx-text-fill: #cfe3ff; -fx-font-size: 12; -fx-font-weight: bold;" text="FILTER" />
+        </VBox>
+    </left>
+
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="15">
+            <padding>
+                <Insets bottom="20" left="20" right="30" />
+            </padding>
+
+            <VBox spacing="8" style="-fx-background-color: #f4f8fc; -fx-background-radius: 16;" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets bottom="18" left="22" right="22" top="18" />
+                </padding>
+
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <Label minWidth="50" style="-fx-font-weight: bold; -fx-text-fill: #0a3fd1;" text="Rank" />
+                    <Label maxWidth="Infinity" style="-fx-font-weight: bold; -fx-text-fill: #0a3fd1;" text="Player" HBox.hgrow="ALWAYS" />
+                    <Label minWidth="60" style="-fx-font-weight: bold; -fx-text-fill: #0a3fd1;" text="Level" />
+                    <Label minWidth="80" style="-fx-font-weight: bold; -fx-text-fill: #0a3fd1;" text="Points" />
+                </HBox>
+                <Separator />
+
+                <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: #e1ebf7; -fx-background-radius: 8;">
+                    <padding>
+                        <Insets bottom="8" left="8" right="8" top="8" />
+                    </padding>
+                    <Label minWidth="50" text="4" />
+                    <Label maxWidth="Infinity" text="Player 4" HBox.hgrow="ALWAYS" />
+                    <Label minWidth="60" text="12" />
+                    <Label minWidth="80" text="1,410" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <padding>
+                        <Insets bottom="8" left="8" right="8" top="8" />
+                    </padding>
+                    <Label minWidth="50" text="5" />
+                    <Label maxWidth="Infinity" text="Player 5" HBox.hgrow="ALWAYS" />
+                    <Label minWidth="60" text="10" />
+                    <Label minWidth="80" text="1,230" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: #e1ebf7; -fx-background-radius: 8;">
+                    <padding>
+                        <Insets bottom="8" left="8" right="8" top="8" />
+                    </padding>
+                    <Label minWidth="50" text="6" />
+                    <Label maxWidth="Infinity" text="Player 6" HBox.hgrow="ALWAYS" />
+                    <Label minWidth="60" text="9" />
+                    <Label minWidth="80" text="1,090" />
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <padding>
+                        <Insets bottom="8" left="8" right="8" top="8" />
+                    </padding>
+                    <Label minWidth="50" text="7" />
+                    <Label maxWidth="Infinity" text="Player 7" HBox.hgrow="ALWAYS" />
+                    <Label minWidth="60" text="8" />
+                    <Label minWidth="80" text="940" />
+                </HBox>
+
+                <Separator />
+
+                <HBox fx:id="yourRankRow" alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: linear-gradient(#2f7bff, #0a3fd1); -fx-background-radius: 10;">
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                    </padding>
+                    <Label minWidth="50" style="-fx-text-fill: white; -fx-font-weight: bold;" text="12" />
+                    <Label minWidth="60" style="-fx-text-fill: white; -fx-font-weight: bold;" text="5" />
+                    <Label minWidth="80" style="-fx-text-fill: white; -fx-font-weight: bold;" text="620" />
+                </HBox>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>
