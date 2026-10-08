@@ -40,6 +40,24 @@ public class AuthenticatorController {
         return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
     }
 
+
+    /**
+     * Checks whether the password has an acceptable strenght
+     * Compares it to some requirements that need to be filled
+     * @param password the given password of the user
+     * @return true or false based on whether the password is of good strenght
+     */
+    private boolean passwordHasGoodStrenght(String password) {
+        // 6 possible errors
+        // 1: not enough length, length should be at least 8 characters long, with a max of 20 characters
+        // 2: no capital letter
+        // 3: no number
+        // 4: no symbol/special character
+        // 5: should not have any whitespace
+        // must use A-Z, no other language characters
+        return password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&\\-+=()])(?=\\S+$).{8,20}$");
+    }
+
     /**
      * Displays an error message to the user.
      *
@@ -139,6 +157,11 @@ public class AuthenticatorController {
 
         if (!isValidEmail(user)){
             errorPopup("Invalid Email", "Please enter a valid email address.");
+            return;
+        }
+
+        if (!passwordHasGoodStrenght(pass)){
+            errorPopup("Invalid Password", "Passwords should be 8-20 characters, have an uppercase letter, a number, a symbol, in english with no spaces");
             return;
         }
 

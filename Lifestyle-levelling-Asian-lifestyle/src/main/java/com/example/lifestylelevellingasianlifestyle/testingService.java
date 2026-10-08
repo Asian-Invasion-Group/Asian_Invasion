@@ -112,10 +112,68 @@ public class testingService {
 
     }
 
+    public void testValidPasswords() {
+
+        // case 1, trying an invalid password
+        // test should fail
+        boolean case1 = passwordHasGoodStrenght("Password1");
+        handlePasswordResults(case1, true);
+
+        // case 2, trying a valid password
+        // test should pass
+        boolean case2 = passwordHasGoodStrenght("Password1!");
+        handlePasswordResults(case2, false);
+
+        // case 3, trying no/empty password
+        // test should fail
+        boolean case3 = passwordHasGoodStrenght("");
+        handlePasswordResults(case3, false);
+
+        // case 4, Trying a password with a whitespace
+        // test should fail
+        boolean case4 = passwordHasGoodStrenght("Password 1!");
+        handlePasswordResults(case4, false);
+
+        // case 5, Trying a password that is too long > 20 characters
+        // test should fail
+        boolean case5 = passwordHasGoodStrenght("This!1sArea11yL0ngPa33word!!!0000");
+        handlePasswordResults(case5, false);
+
+    }
+
     private boolean isValidEmail(String email) {
         return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
     }
+
+    private boolean passwordHasGoodStrenght(String password) {
+        // 4 possible errors
+        // 1: not enough length, length should be at least 8 characters long, with a max of 20 characters
+        // 2: no capital letter
+        // 3: no number
+        // 4: no symbol/special character
+        // 5: should not have any whitespace
+        return password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&\\-+=()])(?=\\S+$).{8,20}$");
+    }
+
     private void handleEmailResults(boolean i, boolean expected) {
+        // takes in the test number, the value and the expected value
+        emailTestCases++;
+        System.out.println("Case[" + emailTestCases + "]: ");
+        if (i) {
+            System.out.print("Email Valid");
+            //return true;
+        } else {
+            System.out.print("Email invalid");
+            //return false;
+        }
+        if (i == expected) {
+            System.out.print("\nTest Passed");
+        } else {
+            System.out.print("\nTest Failed");
+        }
+    }
+
+    private void handlePasswordResults(boolean i, boolean expected) {
         // takes in the test number, the value and the expected value
         emailTestCases++;
         System.out.println("Case[" + emailTestCases + "]: ");
