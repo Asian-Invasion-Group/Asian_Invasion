@@ -24,6 +24,10 @@ public class testingService {
     int passwordTestCases = 0;
     public void testSignup() {
 
+
+        // removing the previous testing account if one exists
+        authenticationService.removeAccount("will@testing.com", "Testing");
+
         // case 1, signing up with a non-existant email
         // test should pass
         boolean signUp = authenticationService.signUp("will@testing.com", "Testing");
