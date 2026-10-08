@@ -90,7 +90,7 @@ public class testingService {
         boolean case1 = isValidEmail("will@testing.com");
         handleEmailResults(case1, true);
 
-        // case 2, trying an invalid email
+        // case 2, trying an invalid email (no local part)
         // test should fail
         boolean case2 = isValidEmail("will.testing.com");
         handleEmailResults(case2, false);
@@ -99,6 +99,16 @@ public class testingService {
         // test should fail
         boolean case3 = isValidEmail("");
         handleEmailResults(case3, false);
+
+        // case 4, trying no TLD
+        // test should fail
+        boolean case4 = isValidEmail("alice@testing");
+        handleEmailResults(case4, false);
+
+        // case 5, Invalid Domain
+        // test should fail
+        boolean case5 = isValidEmail("alice@.com");
+        handleEmailResults(case5, false);
 
     }
 
