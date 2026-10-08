@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
 
@@ -37,6 +38,20 @@ public class AuthenticatorController {
      */
     private boolean isValidEmail(String email) {
         return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
+    }
+
+    /**
+     * Displays an error message to the user.
+     *
+     * @param title the title of the popup
+     * @param message the message displayed to the user
+     */
+    private void errorPopup(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     /**
@@ -88,18 +103,19 @@ public class AuthenticatorController {
         String pass = loginPasswordField.getText();
 
         if (!isValidEmail(user)){
-            //POPUP NOTIFICATION OF INVALID EMAIL
+            errorPopup("Invalid Email", "Please enter a valid email address.");
             return;
         }
 
         int userId = authenticationService.login(user, pass);
+
 
         if (userId != -1){
             Session.setUserId(userId);
             showHomepage();
         }else{
             //FAILED LOGIN
-            //POPUP NOTIFICATION OF LOGIN FAILED
+            errorPopup("Login Failed", "Login Failed.");
         }
 
     }
@@ -116,18 +132,18 @@ public class AuthenticatorController {
         String pass = signUpPasswordField.getText();
         String confirm = signUpConfirmField.getText();
 
-        if (!isValidEmail(user)){
-            //POPUP NOTIFCATION OF INVALID EMAIL
+        if (user.isEmpty() || pass.isEmpty()){
+            errorPopup("Fill In All Fields", "Please fill in all fields.");
             return;
         }
 
-        if (user.isEmpty() || pass.isEmpty()){
-            //POPUP NOTIFICATION TO FILL IN ALL FIELDS
+        if (!isValidEmail(user)){
+            errorPopup("Invalid Email", "Please enter a valid email address.");
             return;
         }
 
         if (!pass.equals(confirm)){
-            //POPUP NOTIFICATIONS OF PASSWORDS DO NOT MATCH
+            errorPopup("Passwords Do Not Match", "Please ensure that both passwords matches.");
             return;
         }
 
@@ -136,7 +152,7 @@ public class AuthenticatorController {
             showLogin();
         }else{
             //FAILED SIGNUP
-            //POPUP NOTIFICATION OF EMAIL IN USE
+            errorPopup("Invalid Signup", "This email is in use. Please enter another email.");
         }
     }
 
