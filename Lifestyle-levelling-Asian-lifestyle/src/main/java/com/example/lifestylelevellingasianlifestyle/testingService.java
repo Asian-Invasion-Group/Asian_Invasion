@@ -7,15 +7,21 @@ public class testingService {
     // test.testSignup();
     // test.testLogin();
     // test.testValidEmail();
+    // test.testNewValidEmail();
+    // test.testValidPasswords();
 
     // signup should always be involked first, as it creates the accounts!!!
     // currently has 11 tests related to signup / login functions
+
+    // need to build a delete account function
 
     private final AuthenticationService authenticationService = new AuthenticationService();
 
     int emailTestCases = 0;
     int signUpTestCases = 0;
     int loginTestCases = 0;
+    int emailnewTestCases = 0;
+    int passwordTestCases = 0;
     public void testSignup() {
 
         // case 1, signing up with a non-existant email
@@ -112,6 +118,35 @@ public class testingService {
 
     }
 
+    public void testNewValidEmail() {
+
+        // case 1, trying a valid email
+        // test should pass
+        boolean case1 = isValidEmailNew("will@testing.com");
+        handleEmailResults(case1, true);
+
+        // case 2, trying an invalid email (no local part)
+        // test should fail
+        boolean case2 = isValidEmailNew("will.testing.com");
+        handleEmailResults(case2, false);
+
+        // case 3, trying no/empty email
+        // test should fail
+        boolean case3 = isValidEmailNew("");
+        handleEmailResults(case3, false);
+
+        // case 4, trying no TLD
+        // test should fail
+        boolean case4 = isValidEmailNew("alice@testing");
+        handleEmailResults(case4, false);
+
+        // case 5, Invalid Domain
+        // test should fail
+        boolean case5 = isValidEmailNew("alice@.com");
+        handleEmailResults(case5, false);
+
+    }
+
     public void testValidPasswords() {
 
         // case 1, trying an invalid password
@@ -145,6 +180,11 @@ public class testingService {
         return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
     }
 
+    // updated version
+    private boolean isValidEmailNew(String email) {
+        return email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
     private boolean passwordHasGoodStrenght(String password) {
         // 4 possible errors
         // 1: not enough length, length should be at least 8 characters long, with a max of 20 characters
@@ -158,7 +198,7 @@ public class testingService {
     private void handleEmailResults(boolean i, boolean expected) {
         // takes in the test number, the value and the expected value
         emailTestCases++;
-        System.out.println("Case[" + emailTestCases + "]: ");
+        System.out.println("\nCase[" + emailTestCases + "]: ");
         if (i) {
             System.out.print("Email Valid");
             //return true;
@@ -167,34 +207,34 @@ public class testingService {
             //return false;
         }
         if (i == expected) {
-            System.out.print("\nTest Passed");
+            System.out.print("\nTest Passed: Expected " + expected + " got " + i);
         } else {
-            System.out.print("\nTest Failed");
+            System.out.print("\nTest Failed Expected " + expected + " got " + i);
         }
     }
 
     private void handlePasswordResults(boolean i, boolean expected) {
         // takes in the test number, the value and the expected value
-        emailTestCases++;
-        System.out.println("Case[" + emailTestCases + "]: ");
+        passwordTestCases++;
+        System.out.println("\nCase[" + emailTestCases + "]: ");
         if (i) {
-            System.out.print("Email Valid");
+            System.out.print("Password Valid");
             //return true;
         } else {
-            System.out.print("Email invalid");
+            System.out.print("Password invalid");
             //return false;
         }
         if (i == expected) {
-            System.out.print("\nTest Passed");
+            System.out.print("\nTest Passed: Expected " + expected + " got " + i);
         } else {
-            System.out.print("\nTest Failed");
+            System.out.print("\nTest Failed Expected " + expected + " got " + i);
         }
     }
 
     private void handleSignupResults(boolean i, boolean expected) {
         // takes in the test number, the value and the expected value
         signUpTestCases++;
-        System.out.println("Case[" + emailTestCases + "]: ");
+        System.out.println("\nCase[" + emailTestCases + "]: ");
         if (i) {
             System.out.print("Signup Successful");
             //return true;
@@ -203,10 +243,9 @@ public class testingService {
             //return false;
         }
         if (i == expected) {
-            System.out.print("\nTest Passed");
+            System.out.print("\nTest Passed: Expected " + expected + " got " + i);
         } else {
-            System.out.print("\nTest Failed");
+            System.out.print("\nTest Failed Expected " + expected + " got " + i);
         }
     }
 }
-
