@@ -22,6 +22,21 @@ public class testingService {
     int loginTestCases = 0;
     int emailnewTestCases = 0;
     int passwordTestCases = 0;
+
+    // storing the values of the tests passed/failed
+
+    int LogintestsPassed = 0;
+    int LogintestsFailed = 0;
+
+    int EmailtestsPassed = 0;
+    int EmailtestsFailed = 0;
+
+    int PasswordtestsPassed = 0;
+    int PasswordtestsFailed = 0;
+
+    int SignuptestsPassed = 0;
+    int SignuptestsFailed = 0;
+
     public void testSignup() {
 
 
@@ -47,6 +62,8 @@ public class testingService {
         // test should fail
         boolean case4 = authenticationService.signUp("john@testing.com", "");
         handleSignupResults(case4, false);
+
+        System.out.println("\nSignup test summery: \n" + SignuptestsPassed + " passed \n" + SignuptestsFailed + " failed \n Total: " + signUpTestCases);
     }
 
     public void testLogin() {
@@ -54,42 +71,24 @@ public class testingService {
         // case 1, loging into an existing account
         // test should pass
         int userId = authenticationService.login("will@testing.com", "Testing");
-
-        if (userId != -1) {
-            System.out.println("Login successful");
-        } else {
-            System.out.println("Login failed");
-        }
+        handleLoginResults(userId, 0);
 
         // case 2, loging into an non-existing account
         // test should fail
         int case2 = authenticationService.login("jack@testing.com", "Testing123");
-
-        if (case2 != -1) {
-            System.out.println("Login successful");
-        } else {
-            System.out.println("Login failed");
-        }
+        handleLoginResults(case2, -1);
 
         // case 3, loging into an existing account with an incorrect password
         // test should fail
         int case3 = authenticationService.login("will@testing.com", "Testing123");
-
-        if (case3 != -1) {
-            System.out.println("Login successful");
-        } else {
-            System.out.println("Login failed");
-        }
+        handleLoginResults(case3, -1);
 
         // case 4, loging in without an email
         // test should fail
         int case4 = authenticationService.login("", "Testing123");
+        handleLoginResults(case4, -1);
 
-        if (case4 != -1) {
-            System.out.println("Login successful");
-        } else {
-            System.out.println("Login failed");
-        }
+        System.out.println("\nLogin test summery: \n" + LogintestsPassed + " passed \n" + LogintestsFailed + " failed \n Total: " + loginTestCases);
 
     }
 
@@ -149,6 +148,7 @@ public class testingService {
         boolean case5 = isValidEmailNew("alice@.com");
         handleEmailResults(case5, false);
 
+        System.out.println("\nEmail test summery: \n" + EmailtestsPassed + " passed \n" + EmailtestsFailed + " failed \n Total: " + emailTestCases);
     }
 
     public void testValidPasswords() {
@@ -177,6 +177,8 @@ public class testingService {
         // test should fail
         boolean case5 = passwordHasGoodStrenght("This!1sArea11yL0ngPa33word!!!0000");
         handlePasswordResults(case5, false);
+
+        System.out.println("\nPassword test summery: \n" + PasswordtestsPassed + " passed \n" + PasswordtestsFailed + " failed \n Total: " + passwordTestCases);
 
     }
 
@@ -212,8 +214,28 @@ public class testingService {
         }
         if (i == expected) {
             System.out.print("\nTest Passed: Expected " + expected + " got " + i);
+            EmailtestsPassed++;
         } else {
             System.out.print("\nTest Failed Expected " + expected + " got " + i);
+            EmailtestsFailed++;
+        }
+    }
+
+    private void handleLoginResults(int i, int expected) {
+        // takes in the test number, the value and the expected value
+        loginTestCases++;
+        System.out.println("\nCase[" + emailTestCases + "]: ");
+        if (i != -1) {
+            System.out.println("Login successful");
+        } else {
+            System.out.println("Login failed");
+        }
+        if (i == expected) {
+            System.out.print("\nTest Passed: Expected " + expected + " got " + i);
+            LogintestsPassed++;
+        } else {
+            System.out.print("\nTest Failed Expected " + expected + " got " + i);
+            LogintestsFailed++;
         }
     }
 
@@ -230,8 +252,10 @@ public class testingService {
         }
         if (i == expected) {
             System.out.print("\nTest Passed: Expected " + expected + " got " + i);
+            PasswordtestsPassed++;
         } else {
             System.out.print("\nTest Failed Expected " + expected + " got " + i);
+            PasswordtestsFailed++;
         }
     }
 
@@ -248,8 +272,10 @@ public class testingService {
         }
         if (i == expected) {
             System.out.print("\nTest Passed: Expected " + expected + " got " + i);
+            SignuptestsPassed++;
         } else {
             System.out.print("\nTest Failed Expected " + expected + " got " + i);
+            SignuptestsFailed++;
         }
     }
 }
