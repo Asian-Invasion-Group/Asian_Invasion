@@ -1,15 +1,23 @@
 package com.example.lifestylelevellingasianlifestyle;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 
 /**
@@ -33,7 +41,7 @@ public class WeatherService {
      * @param longitude long coordinate of current user
      * @return a string containing result
      */
-    public String getWeather(double latitude, double longitude) {
+    public void getWeather(double latitude, double longitude) {
 
         String urlString = String.format(
                 "https://api.open-meteo.com/v1/forecast" +
@@ -59,7 +67,7 @@ public class WeatherService {
 
             if (responseCode != HttpURLConnection.HTTP_OK) {
                 System.out.println("Weather API returned: " + responseCode);
-                return null;
+                //return null;
             }
 
             StringBuilder jsonBuffer = new StringBuilder();
@@ -91,11 +99,25 @@ public class WeatherService {
                     simpleCurrentWeather + "!");
             System.out.println(Arrays.toString(temperaturess));
 
+            currentWeatherText.setText(simpleCurrentWeather + " " + currentTemp + " °C");
+            String path = "/Images/weatherImages/" + currentWeatherCode + ".png";
+
+            InputStream imageStream = getClass().getResourceAsStream(path);
+
+            if (imageStream != null) {
+                Image newImage = new Image(imageStream);
+                currentWeatherImage.setImage(newImage);
+            } else {
+                System.out.println("Image not found: " + path);
+                InputStream backup = getClass().getResourceAsStream("/Images/weatherImages/0.png");
+                Image newImage = new Image(backup);
+                currentWeatherImage.setImage(newImage);
+            }
             con.disconnect();
-            return "-1";
+            //return "-1";
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            //return null;
         }
     }
 
@@ -326,6 +348,27 @@ public class WeatherService {
 
         return temperatureArray;
     }
+
+    @FXML
+    public ImageView currentWeatherImage;
+
+    @FXML
+    public Label currentWeatherText;
+
+    /**
+     * Initialises weather page
+     */
+    @FXML
+    public void initialize() throws IOException {
+
+
+        IPService ipService = new IPService();
+
+        LocationData location = ipService.getIp();
+        getWeather(location.latitude(), location.longitude());
+
+    };
+
 
     /**
      * Navigates back to the Home page
