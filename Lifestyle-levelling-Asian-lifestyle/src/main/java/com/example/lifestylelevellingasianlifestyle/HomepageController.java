@@ -27,7 +27,7 @@ public class HomepageController {
      */
     @FXML
     private void onProfile() {
-        NavigationController.onGroceries(profileButton);
+        NavigationController.onProfile(profileButton);
     }
 
     /**

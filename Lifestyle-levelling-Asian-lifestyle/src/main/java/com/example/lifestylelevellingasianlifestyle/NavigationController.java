@@ -56,14 +56,6 @@ public class NavigationController {
         navigate(button, "Weather page.fxml", "Weather");
     }
 
-    /**
-     * Navigates to the Electricity page.
-     *
-     * @param button pressde by user
-     */
-    public static void onElectricity(Button button) {
-        navigate(button, "water-electricity.fxml", "Water and Electricity");
-    }
 
     /**
      * Navigates to the Profile page.
@@ -73,6 +65,7 @@ public class NavigationController {
     public static void onProfile(Button button) {
         navigate(button, "profile settings.fxml", "Profile Settings");
     }
+
     /**
      * Navigates to another page in the application.
      *

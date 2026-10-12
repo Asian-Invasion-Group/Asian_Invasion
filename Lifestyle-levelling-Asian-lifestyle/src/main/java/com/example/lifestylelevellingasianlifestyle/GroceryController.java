@@ -410,6 +410,6 @@ public class GroceryController {
      */
     @FXML
     private void onProfile() {
-        NavigationController.onGroceries(profileButton);
+        NavigationController.onProfile(profileButton);
     }
 }

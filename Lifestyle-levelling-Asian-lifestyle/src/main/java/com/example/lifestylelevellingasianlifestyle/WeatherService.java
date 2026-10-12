@@ -406,10 +406,10 @@ public class WeatherService {
     }
 
     /**
-     * Navigates to the Grocery Tab
+     * Navigates to the Profile Tab
      */
     @FXML
     private void onProfile() {
-        NavigationController.onGroceries(profileButton);
+        NavigationController.onProfile(profileButton);
     }
 }
