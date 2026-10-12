@@ -76,4 +76,44 @@ public class AuthenticationService {
             return -1;
         }
     }
+
+    /**
+     * Method to delete the account of an existing user
+     * @param email the email of the user
+     * @param password the chosen password of the user
+     * @return success if the account was deleted
+     */
+    public int removeAccount(String email, String password) {
+
+        String sql = "SELECT userId, password FROM users WHERE email = ?";
+
+        try (Connection conn = Database.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, email);
+
+            var result = stmt.executeQuery();
+
+            if (result.next()) {
+                String userId = String.valueOf(result.getInt("userID"));
+                String storedHash = result.getString("password");
+
+                if (BCrypt.checkpw(password, storedHash)){
+                    // credentials match, starting deletion sql
+                    String deletion = "DELETE FROM users WHERE userID = ?";
+                    PreparedStatement remove = conn.prepareStatement(deletion);
+                    remove.setString(1, userId);
+                    remove.executeUpdate();
+                    return 1;
+                }
+            }
+
+            return -1;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
 }
