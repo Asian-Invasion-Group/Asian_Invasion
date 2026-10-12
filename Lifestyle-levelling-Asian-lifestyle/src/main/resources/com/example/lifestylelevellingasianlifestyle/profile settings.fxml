@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.effect.DropShadow?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            prefWidth="900" prefHeight="560"
+            style="-fx-background-color: linear-gradient(to bottom right, #6b9dc2, #4a7a9f);">
+
+    <top>
+        <BorderPane>
+            <padding>
+                <Insets top="15" right="20" bottom="10" left="20" />
+            </padding>
+            <left>
+                <Button fx:id="backButton" text="←"
+                        style="-fx-background-color: linear-gradient(#2f7bff, #0a3fd1); -fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand;" />
+            </left>
+            <center>
+                <Label text="Profile" BorderPane.alignment="CENTER"
+                       style="-fx-font-size: 30; -fx-text-fill: white; -fx-font-weight: bold;" />
+            </center>
+            <right>
+                <Button fx:id="signOutButton" text="Sign Out"
+                        style="-fx-background-color: #ff7a7a; -fx-text-fill: #3b0a0a; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" />
+            </right>
+        </BorderPane>
+    </top>
+
+    <left>
+        <VBox spacing="12" prefWidth="170" alignment="TOP_CENTER"
+              style="-fx-background-color: rgba(10, 63, 209, 0.35); -fx-background-radius: 16;">
+            <BorderPane.margin>
+                <Insets top="10" right="10" bottom="20" left="20" />
+            </BorderPane.margin>
+            <padding>
+                <Insets top="20" right="12" bottom="20" left="12" />
+            </padding>
+
+            <Label text="MENU" style="-fx-text-fill: #cfe3ff; -fx-font-size: 12; -fx-font-weight: bold;" />
+
+            <ToggleButton fx:id="userInfoTab" text="User Info" toggleGroup="$profileTabs"
+                          selected="true" maxWidth="Infinity"
+                          style="-fx-background-color: linear-gradient(#2f7bff, #0a3fd1); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-background-radius: 12; -fx-padding: 10 0 10 0; -fx-cursor: hand;" />
+
+            <ToggleButton fx:id="settingsTab" text="Settings" toggleGroup="$profileTabs"
+                          maxWidth="Infinity"
+                          style="-fx-background-color: linear-gradient(#2f7bff, #0a3fd1); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-background-radius: 12; -fx-padding: 10 0 10 0; -fx-cursor: hand;" />
+
+            <ToggleButton fx:id="settingsTab" text="Leaderboard" toggleGroup="$profileTabs"
+                          maxWidth="Infinity"
+                          style="-fx-background-color: linear-gradient(#2f7bff, #0a3fd1); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-background-radius: 12; -fx-padding: 10 0 10 0; -fx-cursor: hand;" />
+        </VBox>
+    </left>
+
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="10">
+            <padding>
+                <Insets top="0" right="30" bottom="20" left="20" />
+            </padding>
+
+            <StackPane prefHeight="110">
+                <Circle radius="50" fill="#e8f1fb" stroke="#0a3fd1" strokeWidth="4">
+                    <effect>
+                        <DropShadow radius="10" color="#00000066" />
+                    </effect>
+                </Circle>
+                <Circle radius="15" fill="#0a3fd1" translateY="-18" />
+                <Rectangle width="48" height="26" arcWidth="26" arcHeight="26"
+                           fill="#0a3fd1" translateY="18" />
+            </StackPane>
+
+            <Label fx:id="usernameLabel" text="User"
+                   style="-fx-font-size: 22; -fx-text-fill: white; -fx-font-weight: bold;" />
+
+            <StackPane VBox.vgrow="ALWAYS">
+
+                <VBox fx:id="userInfoPane" spacing="14" alignment="TOP_LEFT"
+                      style="-fx-background-color: rgba(255,255,255,0.88); -fx-background-radius: 16;">
+                    <padding>
+                        <Insets top="20" right="25" bottom="20" left="25" />
+                    </padding>
+                    <effect>
+                        <DropShadow radius="12" color="#00000044" />
+                    </effect>
+
+                    <Label text="User Info" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #0a3fd1;" />
+                    <Separator />
+
+                    <GridPane hgap="15" vgap="12">
+                        <columnConstraints>
+                            <ColumnConstraints minWidth="110" />
+                            <ColumnConstraints hgrow="ALWAYS" />
+                        </columnConstraints>
+
+                        <Label text="Username" GridPane.rowIndex="0" GridPane.columnIndex="0" />
+                        <TextField fx:id="profileUsernameField" GridPane.rowIndex="0" GridPane.columnIndex="1" />
+
+                        <Label text="Display name" GridPane.rowIndex="1" GridPane.columnIndex="0" />
+                        <TextField fx:id="displayNameField" promptText="Your name" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+
+                        <Label text="Email" GridPane.rowIndex="2" GridPane.columnIndex="0" />
+                        <TextField fx:id="emailField" promptText="you@example.com" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+
+                        <Label text="Member since" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                        <Label fx:id="memberSinceLabel" text="—" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                    </GridPane>
+
+                    <Label fx:id="userInfoMessage" style="-fx-text-fill: #1a7f37;" visible="false" managed="false" />
+
+                    <Button fx:id="saveUserInfoButton" text="Save Changes"
+                            style="-fx-background-color: linear-gradient(#2f7bff, #0a3fd1); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 8 20 8 20; -fx-cursor: hand;" />
+                </VBox>
+
+                <VBox fx:id="settingsPane" spacing="14" alignment="TOP_LEFT" visible="false" managed="false"
+                      style="-fx-background-color: rgba(255,255,255,0.88); -fx-background-radius: 16;">
+                    <padding>
+                        <Insets top="20" right="25" bottom="20" left="25" />
+                    </padding>
+                    <effect>
+                        <DropShadow radius="12" color="#00000044" />
+                    </effect>
+
+                    <Label text="Settings" style="-fx-font-size: 20; -fx-font-weight: bold; -fx-text-fill: #0a3fd1;" />
+                    <Separator />
+
+                    <CheckBox fx:id="notificationsCheck" text="Enable notifications" selected="true" />
+                    <CheckBox fx:id="darkModeCheck" text="Dark mode" />
+
+                    <HBox spacing="15" alignment="CENTER_LEFT">
+                        <Label text="Language" minWidth="110" />
+                        <ComboBox fx:id="languageCombo" promptText="English" prefWidth="180" />
+                    </HBox>
+
+                    <Separator />
+                    <Label text="Change password" style="-fx-font-weight: bold;" />
+                    <PasswordField fx:id="currentPasswordField" promptText="Current password" />
+                    <PasswordField fx:id="newPasswordField" promptText="New password" />
+                    <Label fx:id="settingsErrorLabel" style="-fx-text-fill: red;" visible="false" managed="false" />
+
+                    <Button fx:id="updatePasswordButton" text="Update Password"
+                            style="-fx-background-color: linear-gradient(#2f7bff, #0a3fd1); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-padding: 8 20 8 20; -fx-cursor: hand;" />
+                </VBox>
+            </StackPane>
+        </VBox>
+    </center>
+</BorderPane>
