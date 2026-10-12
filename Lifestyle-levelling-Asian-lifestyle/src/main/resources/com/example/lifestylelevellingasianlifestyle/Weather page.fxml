@@ -73,7 +73,7 @@
                         <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" fx:id="currentWeatherImage" >
                             <Image url="@../../../Images/weatherImages/0.png" />
                         </ImageView>
-                    <Label alignment="CENTER" text="12oC Sunny" fx:id="currentWeatherText" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="25.0">
+                    <Label alignment="CENTER" text="Weather Placeholder" fx:id="currentWeatherText" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="25.0">
                         <font>
                             <Font name="System Bold" size="14.0" />
                         </font></Label>
@@ -96,15 +96,18 @@
                             <Font name="System Bold" size="14.0" />
                         </font>
                     </Label>
+
+
+
+                    <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" fx:id="currentRecommendations" >
+                        <Image url="@../../../Images/weatherImages/0.png" />
+                    </ImageView>
+                    <Label alignment="CENTER" text="Recommendation Placeholder" fx:id="currentRecommendationText" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="25.0">
+                        <font>
+                            <Font name="System Bold" size="14.0" />
+                        </font></Label>
                 </AnchorPane>
-                <AnchorPane prefHeight="400.0" prefWidth="200.0">
-                    <TableView fx:id="groceryListTable" layoutX="-8.666666666666666" prefHeight="248.0" prefWidth="253.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
-                        <columns>
-                            <TableColumn fx:id="groceryNameColumn" text="Item Name" />
-                            <TableColumn fx:id="quantityColumn" text="Quantity" />
-                        </columns>
-                    </TableView>
-                </AnchorPane>
+
             </VBox>
         </AnchorPane>
     </center>

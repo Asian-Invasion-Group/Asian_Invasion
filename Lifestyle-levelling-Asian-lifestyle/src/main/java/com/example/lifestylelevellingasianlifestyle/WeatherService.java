@@ -91,7 +91,7 @@ public class WeatherService {
             String[] recommendations = getRecommendations(jsonBuffer.toString());
 
             JSONObject hourly = jsonObject.getJSONObject("hourly");
-            JSONArray times =hourly.getJSONArray("time");
+            JSONArray times = hourly.getJSONArray("time");
             JSONArray temperatures = hourly.getJSONArray("temperature_2m");
 
 
@@ -100,6 +100,16 @@ public class WeatherService {
             System.out.println("It is currently " + currentTemp + " degrees with " +
                     simpleCurrentWeather + "!");
             System.out.println(Arrays.toString(temperaturess));
+            //System.out.println(temperaturess[0]);
+
+
+            String recommendation = temperaturess[0].split("/")[4];
+
+            System.out.println(recommendation);
+
+//            for(String part : parts) {
+//                System.out.println(part);
+//            }
 
             currentWeatherText.setText(simpleCurrentWeather + " " + currentTemp + " °C");
             String path = "/Images/weatherImages/" + currentWeatherCode + ".png";
@@ -363,11 +373,14 @@ public class WeatherService {
     @FXML
     public void initialize() throws IOException {
 
-
         IPService ipService = new IPService();
 
         LocationData location = ipService.getIp();
         getWeather(location.latitude(), location.longitude());
+
+
+
+
 
     };
 
