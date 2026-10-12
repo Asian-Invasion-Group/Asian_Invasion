@@ -1,7 +1,4 @@
 package com.example.lifestylelevellingasianlifestyle;
-
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -62,8 +59,8 @@ public class WeatherService {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
             con.setRequestMethod("GET");
-            con.setConnectTimeout(2500);
-            con.setReadTimeout(2500);
+            con.setConnectTimeout(25000);
+            con.setReadTimeout(25000);
 
             int responseCode = con.getResponseCode();
 
@@ -104,8 +101,32 @@ public class WeatherService {
 
 
             String recommendation = temperaturess[0].split("/")[4];
+            if (recommendation.length() != 0) {
+                System.out.println(recommendation);
+                currentRecommendationText.setText(recommendation);
+                String path = "/Images/recommendations/";
+                if (recommendation.equals("Go for a run & hang your laundry")) {
+                    path += "hangcloths.jpg";
+                } else if (recommendation.equals("Stay indoors & avoid the rain")) {
+                    path += "rainhouse.jpg";
+                } else if (recommendation.equals("Stay indoors & keep cool")) {
+                    path += "stayindoors.jpg";
+                } else if (recommendation.equals("Take an umbrella")) {
+                    path += "takeumbrella.jpg";
+                } else if (recommendation.equals("Bring a jacket & stay warm")) {
+                    path += "jacket.jpg";
+                } else if (recommendation.equals("Remember to hydrate")) {
+                    path += "hydrate.jpg";
+                } else {
+                    path += "sun.jpg";
+                }
+                InputStream imageStream = getClass().getResourceAsStream(path);
+                Image newImage = new Image(imageStream);
+                currentRecommendations.setImage(newImage);
+            }
 
-            System.out.println(recommendation);
+            //stayindoors.jpg
+            // Stay indoors and keep cool
 
 //            for(String part : parts) {
 //                System.out.println(part);
@@ -366,6 +387,12 @@ public class WeatherService {
 
     @FXML
     public Label currentWeatherText;
+
+
+    public ImageView currentRecommendations;
+
+    @FXML
+    public Label currentRecommendationText;
 
     /**
      * Initialises weather page

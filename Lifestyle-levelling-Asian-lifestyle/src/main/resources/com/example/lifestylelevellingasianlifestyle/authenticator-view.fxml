@@ -15,7 +15,7 @@
             <!-- LOGIN PANE -->
             <VBox alignment="CENTER" fx:id="loginPane" spacing="10">
                 <Label text="Login" style="-fx-font-size: 20;"  />
-                <TextField fx:id="loginUsernameField" promptText="Username" />
+                <TextField fx:id="loginUsernameField" promptText="Email" />
                 <PasswordField fx:id="loginPasswordField" promptText="Password" />
                 <Button text="Login" onAction="#onLogin"/>
                 <Hyperlink text="Sign up" onAction="#showSignUp"  />
@@ -24,7 +24,7 @@
             <!-- SIGN UP PANE -->
             <VBox alignment="CENTER" fx:id="signUpPane" spacing="10" visible="false">
                 <Label text="Sign Up" style="-fx-font-size: 20;" />
-                <TextField fx:id="signUpUsernameField" promptText="Username" />
+                <TextField fx:id="signUpUsernameField" promptText="Email" />
                 <PasswordField fx:id="signUpPasswordField" promptText="Password" />
                 <PasswordField fx:id="signUpConfirmField" promptText="Confirm Password" />
                 <Button text="Create Account" onAction="#onSignUp" />
