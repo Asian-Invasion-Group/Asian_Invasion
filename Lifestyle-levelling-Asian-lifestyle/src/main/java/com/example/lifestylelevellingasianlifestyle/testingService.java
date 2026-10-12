@@ -1,20 +1,9 @@
 package com.example.lifestylelevellingasianlifestyle;
 
+/**
+ * Testing service to ensure all features are functional when launching the application
+ */
 public class testingService {
-
-    // testing service callable by involking
-    // testingService test = new testingService();
-    // test.testSignup();
-    // test.testLogin();
-    // test.testValidEmail();
-    // test.testNewValidEmail();
-    // test.testValidPasswords();
-
-    // signup should always be involked first, as it creates the accounts!!!
-    // currently has 11 tests related to signup / login functions
-
-    // need to build a delete account function
-
     private final AuthenticationService authenticationService = new AuthenticationService();
 
     int emailTestCases = 0;
@@ -22,8 +11,6 @@ public class testingService {
     int loginTestCases = 0;
     int emailnewTestCases = 0;
     int passwordTestCases = 0;
-
-    // storing the values of the tests passed/failed
 
     int LogintestsPassed = 0;
     int LogintestsFailed = 0;
@@ -37,9 +24,10 @@ public class testingService {
     int SignuptestsPassed = 0;
     int SignuptestsFailed = 0;
 
+    /**
+     * Tests the signup feature
+     */
     public void testSignup() {
-
-
         // removing the previous testing account if one exists
         authenticationService.removeAccount("will@testing.com", "Testing");
 
@@ -66,6 +54,9 @@ public class testingService {
         System.out.println("\nSignup test summery: \n" + SignuptestsPassed + " passed \n" + SignuptestsFailed + " failed \n Total: " + signUpTestCases);
     }
 
+    /**
+     * Tests the login feature
+     */
     public void testLogin() {
 
         // case 1, loging into an existing account
@@ -92,6 +83,9 @@ public class testingService {
 
     }
 
+    /**
+     * Tests the regex and email validitiy check
+     */
     public void testValidEmail() {
 
         // case 1, trying a valid email
@@ -121,6 +115,9 @@ public class testingService {
 
     }
 
+    /**
+     * Tests check for new email
+     */
     public void testNewValidEmail() {
 
         // case 1, trying a valid email
@@ -151,6 +148,9 @@ public class testingService {
         System.out.println("\nEmail test summery: \n" + EmailtestsPassed + " passed \n" + EmailtestsFailed + " failed \n Total: " + emailTestCases);
     }
 
+    /**
+     * Tests password strength check
+     */
     public void testValidPasswords() {
 
         // case 1, trying an invalid password
@@ -182,15 +182,29 @@ public class testingService {
 
     }
 
+    /**
+     * Email regex to identify valid email
+     * @param email email given by user
+     * @return true if email is a valid email
+     */
     private boolean isValidEmail(String email) {
         return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
     }
 
-    // updated version
+    /**
+     * Email regex to identify valid email
+     * @param email email given by user
+     * @return true if email is a valid email
+     */
     private boolean isValidEmailNew(String email) {
         return email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
     }
 
+    /**
+     * Checks if password strength is good
+     * @param password password set by the user
+     * @return true if password is strong enough
+     */
     private boolean passwordHasGoodStrenght(String password) {
         // 4 possible errors
         // 1: not enough length, length should be at least 8 characters long, with a max of 20 characters
@@ -201,6 +215,11 @@ public class testingService {
         return password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&\\-+=()])(?=\\S+$).{8,20}$");
     }
 
+    /**
+     * Handles test cases from email checks
+     * @param i test number
+     * @param expected value
+     */
     private void handleEmailResults(boolean i, boolean expected) {
         // takes in the test number, the value and the expected value
         emailTestCases++;
@@ -221,6 +240,11 @@ public class testingService {
         }
     }
 
+    /**
+     * Handles test cases from login checks
+     * @param i test number
+     * @param expected value
+     */
     private void handleLoginResults(int i, int expected) {
         // takes in the test number, the value and the expected value
         loginTestCases++;
@@ -239,6 +263,11 @@ public class testingService {
         }
     }
 
+    /**
+     * Handles test cases from password checks
+     * @param i test number
+     * @param expected value
+     */
     private void handlePasswordResults(boolean i, boolean expected) {
         // takes in the test number, the value and the expected value
         passwordTestCases++;
@@ -259,6 +288,11 @@ public class testingService {
         }
     }
 
+    /**
+     * Handles test cases from signup checks
+     * @param i test number
+     * @param expected value
+     */
     private void handleSignupResults(boolean i, boolean expected) {
         // takes in the test number, the value and the expected value
         signUpTestCases++;
