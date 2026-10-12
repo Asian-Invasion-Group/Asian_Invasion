@@ -25,7 +25,7 @@ public class AuthenticationService {
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, hashedPassword);
-            stmt.setString(2, email);
+            stmt.setString(2, email.toLowerCase());
 
             stmt.executeUpdate();
 
@@ -56,7 +56,7 @@ public class AuthenticationService {
         try (Connection conn = Database.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, email);
+            stmt.setString(1, email.toLowerCase());
 
             var result = stmt.executeQuery();
 
@@ -90,7 +90,7 @@ public class AuthenticationService {
         try (Connection conn = Database.connect();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setString(1, email);
+            stmt.setString(1, email.toLowerCase());
 
             var result = stmt.executeQuery();
 
