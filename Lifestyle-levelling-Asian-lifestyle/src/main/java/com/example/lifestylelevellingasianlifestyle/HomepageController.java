@@ -19,6 +19,16 @@ public class HomepageController {
     public Button signoutButton;
     @FXML
     public Button weatherButton;
+    @FXML
+    public Button profileButton;
+
+    /**
+     * Navigates to the Profile Tab
+     */
+    @FXML
+    private void onProfile() {
+        NavigationController.onGroceries(profileButton);
+    }
 
     /**
      * Navigates to the Grocery Tab

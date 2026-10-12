@@ -30,6 +30,8 @@ public class GroceryController {
     public Button weatherButton;
     @FXML
     public Button groceryButton;
+    @FXML
+    public Button profileButton;
 
     @FXML
     private TableView<ExistingGrocery> groceryTable;
@@ -401,5 +403,13 @@ public class GroceryController {
     @FXML
     private void onGroceries() {
         NavigationController.onGroceries(groceryButton);
+    }
+
+    /**
+     * Navigates to the Grocery Tab
+     */
+    @FXML
+    private void onProfile() {
+        NavigationController.onGroceries(profileButton);
     }
 }

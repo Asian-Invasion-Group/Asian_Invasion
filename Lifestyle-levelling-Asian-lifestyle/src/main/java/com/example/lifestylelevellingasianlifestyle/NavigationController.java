@@ -66,6 +66,14 @@ public class NavigationController {
     }
 
     /**
+     * Navigates to the Profile page.
+     *
+     * @param button pressde by user
+     */
+    public static void onProfile(Button button) {
+        navigate(button, "profile settings.fxml", "Profile Settings");
+    }
+    /**
      * Navigates to another page in the application.
      *
      * @param button the button pressed by the user
