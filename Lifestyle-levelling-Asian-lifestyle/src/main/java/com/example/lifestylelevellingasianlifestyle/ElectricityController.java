@@ -28,10 +28,16 @@ import java.util.Locale;
  */
 public class ElectricityController {
     @FXML
-    private Button homeButton;
-
+    public Button homeButton;
     @FXML
-    private Button groceryButton;
+    public Button utilityButton;
+    @FXML
+    public Button weatherButton;
+    @FXML
+    public Button groceryButton;
+    @FXML
+    public Button profileButton;
+
 
     @FXML
     private DatePicker electricityMonthPicker;
@@ -224,9 +230,20 @@ public class ElectricityController {
     /**
      * Navigates to the home dashboard.
      */
+
     @FXML
     private void onHome() {
-        openPage("home-dashboard.fxml", "Lifestyle Levelling", homeButton);
+        NavigationController.onHome(homeButton);
+    }
+
+    @FXML
+    private void onProfile() {
+        NavigationController.onProfile(profileButton);
+    }
+
+    @FXML
+    private void onWeather() {
+        NavigationController.onWeather(profileButton);
     }
 
     /**
