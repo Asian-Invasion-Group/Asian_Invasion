@@ -1,8 +1,12 @@
 package com.example.lifestylelevellingasianlifestyle;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
@@ -16,6 +20,7 @@ import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Class to retrieve and process weather information through an external weather service
@@ -33,6 +38,15 @@ public class WeatherService {
     public Button weatherButton;
     @FXML
     public Button profileButton;
+    @FXML
+    public ImageView currentWeatherImage;
+    @FXML
+    public Label currentWeatherText;
+    public ImageView currentRecommendations;
+    @FXML
+    public Label currentRecommendationText;
+    @FXML
+    private VBox forecastList;
 
     /**
      * Retrieves the current weather for a specified location
@@ -77,7 +91,7 @@ public class WeatherService {
                     jsonBuffer.append(line);
                 }
             }
-
+            con.disconnect();
 
             JSONObject jsonObject = new JSONObject(jsonBuffer.toString());
             JSONObject curently = jsonObject.getJSONObject("current");
@@ -86,7 +100,7 @@ public class WeatherService {
             int currentTemp = curently.getInt("temperature_2m");
             int currentWeatherCode = curently.getInt("weather_code");
             String[] recommendations = getRecommendations(jsonBuffer.toString());
-
+            displayForecast(getTemperatures(jsonBuffer.toString()));
             JSONObject hourly = jsonObject.getJSONObject("hourly");
             JSONArray times = hourly.getJSONArray("time");
             JSONArray temperatures = hourly.getJSONArray("temperature_2m");
@@ -97,7 +111,6 @@ public class WeatherService {
             System.out.println("It is currently " + currentTemp + " degrees with " +
                     simpleCurrentWeather + "!");
             System.out.println(Arrays.toString(temperaturess));
-            //System.out.println(temperaturess[0]);
 
 
             String recommendation = temperaturess[0].split("/")[4];
@@ -125,14 +138,7 @@ public class WeatherService {
                 currentRecommendations.setImage(newImage);
             }
 
-            //stayindoors.jpg
-            // Stay indoors and keep cool
-
-//            for(String part : parts) {
-//                System.out.println(part);
-//            }
-
-            currentWeatherText.setText(simpleCurrentWeather + " " + currentTemp + " °C");
+            currentWeatherText.setText(simpleCurrentWeather + " (" + currentTemp + "°C)");
             String path = "/Images/weatherImages/" + currentWeatherCode + ".png";
 
             InputStream imageStream = getClass().getResourceAsStream(path);
@@ -146,7 +152,7 @@ public class WeatherService {
                 Image newImage = new Image(backup);
                 currentWeatherImage.setImage(newImage);
             }
-            con.disconnect();
+
             //return "-1";
         } catch (Exception e) {
             e.printStackTrace();
@@ -382,17 +388,68 @@ public class WeatherService {
         return temperatureArray;
     }
 
-    @FXML
-    public ImageView currentWeatherImage;
 
-    @FXML
-    public Label currentWeatherText;
+    private void displayForecast(String[] forecasts) {
+        forecastList.getChildren().clear();
 
+        for (int i = 0; i < Math.min(8, forecasts.length); i++) {
+            String[] data = forecasts[i].split("/");
 
-    public ImageView currentRecommendations;
+            String time = data[0];
+            String temperature = data[1];
+            String conditions = data[3];
 
-    @FXML
-    public Label currentRecommendationText;
+            Image image = new Image(
+                    getClass().getResourceAsStream(
+                            getWeatherIcon(conditions)
+                    )
+            );
+
+            ImageView icon = new ImageView(image);
+//            InputStream imageStream = getClass().getResourceAsStream(path);
+//            Image newImage = new Image(imageStream);
+//            currentRecommendations.setImage(newImage);
+
+            icon.setFitWidth(40);
+            icon.setFitHeight(40);
+            icon.setPreserveRatio(true);
+
+            Label label = new Label(conditions + " (" + temperature + "°C)");
+
+            Label timeLabel = new Label(time);
+
+            VBox text = new VBox(4, label, timeLabel);
+            HBox row = new HBox(10, icon, text);
+
+            row.setAlignment(Pos.CENTER_LEFT);
+            row.setStyle("-fx-padding: 10;");
+
+            forecastList.getChildren().add(row);
+        }
+    }
+
+    /**
+     * Convers weather conditions to an icon
+     * @param conditions current condition of the weather
+     * @return Weather icon path
+     */
+
+    private String getWeatherIcon(String conditions) {
+        String weather = conditions.toLowerCase();
+        String path = "/Images/weatherImages/";
+        if (weather.contains("thunderstorm")) {
+            return path + "5.png";
+        } else if (weather.contains("drizzle") || weather.contains("rain")) {
+            return path + "3.png";
+        } else if (weather.contains("fog")) {
+            return path + "4.png";
+        } else if (weather.contains("cloud")) {
+            return path + "2.png";
+        } else {
+            return path + "0.png";
+        }
+    }
+
 
     /**
      * Initialises weather page
@@ -404,10 +461,6 @@ public class WeatherService {
 
         LocationData location = ipService.getIp();
         getWeather(location.latitude(), location.longitude());
-
-
-
-
 
     };
 
