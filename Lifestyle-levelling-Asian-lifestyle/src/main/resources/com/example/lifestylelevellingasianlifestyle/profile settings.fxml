@@ -7,8 +7,13 @@
 <?import javafx.scene.effect.DropShadow?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.lifestylelevellingasianlifestyle.ProfilesettingsController"
             prefWidth="900" prefHeight="560"
             style="-fx-background-color: linear-gradient(to bottom right, #6b9dc2, #4a7a9f);">
+
+            <fx:define>
+                <ToggleGroup fx:id="profileTabs" />
+            </fx:define>
 
     <top>
         <BorderPane>
@@ -16,7 +21,7 @@
                 <Insets top="15" right="20" bottom="10" left="20" />
             </padding>
             <left>
-                <Button fx:id="backButton" text="←"
+                <Button fx:id="backButton" text="←" onAction="#onHome"
                         style="-fx-background-color: linear-gradient(#2f7bff, #0a3fd1); -fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold; -fx-background-radius: 12; -fx-cursor: hand;" />
             </left>
             <center>
@@ -24,7 +29,7 @@
                        style="-fx-font-size: 30; -fx-text-fill: white; -fx-font-weight: bold;" />
             </center>
             <right>
-                <Button fx:id="signOutButton" text="Sign Out"
+                <Button fx:id="signoutButton" text="Sign Out" onAction="#onSignout"
                         style="-fx-background-color: #ff7a7a; -fx-text-fill: #3b0a0a; -fx-font-weight: bold; -fx-background-radius: 6; -fx-cursor: hand;" />
             </right>
         </BorderPane>
@@ -50,7 +55,7 @@
                           maxWidth="Infinity"
                           style="-fx-background-color: linear-gradient(#2f7bff, #0a3fd1); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-background-radius: 12; -fx-padding: 10 0 10 0; -fx-cursor: hand;" />
 
-            <ToggleButton fx:id="settingsTab" text="Leaderboard" toggleGroup="$profileTabs"
+            <ToggleButton fx:id="leaderboardTab" text="Leaderboard" toggleGroup="$profileTabs"
                           maxWidth="Infinity"
                           style="-fx-background-color: linear-gradient(#2f7bff, #0a3fd1); -fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold; -fx-background-radius: 12; -fx-padding: 10 0 10 0; -fx-cursor: hand;" />
         </VBox>

@@ -18,6 +18,8 @@ public class ProfilesettingsController {
     public Button weatherButton;
     @FXML
     public Button profileButton;
+    @FXML
+    public Button backButton;
 
     /**
      * Navigates to the Profile Tab
@@ -48,7 +50,7 @@ public class ProfilesettingsController {
      */
     @FXML
     private void onHome() {
-        NavigationController.onHome(homeButton);
+        NavigationController.onHome(backButton);
     }
 
     /**
