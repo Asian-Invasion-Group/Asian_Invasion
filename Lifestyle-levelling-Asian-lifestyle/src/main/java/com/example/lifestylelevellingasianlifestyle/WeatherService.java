@@ -270,14 +270,6 @@ public class WeatherService {
     }
 
     public String[] getRecommendations(String json) {
-
-        // check if there is any data
-        if (json.length() == 0) {
-            // no data, throw error
-            String[] error = new String[0];
-            return error;
-        }
-
         JSONObject jsonObject = new JSONObject(json);
 
         JSONObject current = jsonObject.getJSONObject("current");
