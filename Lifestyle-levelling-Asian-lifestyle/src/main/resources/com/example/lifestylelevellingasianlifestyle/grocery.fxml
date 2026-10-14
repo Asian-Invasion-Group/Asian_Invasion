@@ -22,7 +22,7 @@
                   </ImageView>
                </graphic></Button>
 
-                     <Label alignment="TOP_CENTER" text="Grocery" textOverrun="CLIP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                     <Label alignment="TOP_CENTER" mouseTransparent="true" text="Grocery" textOverrun="CLIP" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                <font>
                   <Font name="System Bold Italic" size="24.0" />
                </font>

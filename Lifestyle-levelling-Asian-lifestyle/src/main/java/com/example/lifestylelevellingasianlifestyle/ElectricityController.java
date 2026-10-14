@@ -243,7 +243,12 @@ public class ElectricityController {
 
     @FXML
     private void onWeather() {
-        NavigationController.onWeather(profileButton);
+        NavigationController.onWeather(weatherButton);
+    }
+
+    @FXML
+    private void onUtilities() {
+        NavigationController.onUtilities(utilityButton);
     }
 
     /**
