@@ -5,7 +5,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -17,10 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 import java.io.InputStream;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Class to retrieve and process weather information through an external weather service
@@ -452,17 +448,18 @@ public class WeatherService {
 
 
     /**
-     * Initialises weather page
+     * Initialises the weather service.
+     * @throws IOException if an I/O error occurs
      */
     @FXML
-    public void initialize() throws IOException {
+    public void initialise() throws IOException {
 
         IPService ipService = new IPService();
 
         LocationData location = ipService.getIp();
         getWeather(location.latitude(), location.longitude());
 
-    };
+    }
 
 
     /**
