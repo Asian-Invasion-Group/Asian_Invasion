@@ -97,6 +97,7 @@
                 <version>3.4.0</version>
                 <configuration>
                     <destDir>javadoc</destDir>
+                    <failOnWarnings>false</failOnWarnings>
                     <reportOutputDirectory>${project.build.directory}/docs</reportOutputDirectory>
                 </configuration>
             </plugin>
