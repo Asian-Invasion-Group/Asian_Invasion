@@ -76,8 +76,8 @@
     </left>
 
     <center>
-        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" BorderPane.alignment="CENTER">
-                <VBox prefWidth="580.0" spacing="14.0">
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" BorderPane.alignment="CENTER" style="-fx-background-color: #598BAF;">
+                <VBox prefWidth="580.0" spacing="14.0" style="-fx-background-color: #598BAF;">
                     <padding>
                         <Insets bottom="18.0" left="18.0" right="18.0" top="14.0" />
                     </padding>
@@ -119,7 +119,7 @@
 
                         <HBox spacing="12.0">
 
-                                <VBox spacing="4.0" style="-fx-background-color: #f4f6f8; -fx-padding: 12; -fx-background-radius: 8;" HBox.hgrow="ALWAYS">
+                                <VBox spacing="4.0" style="-fx-padding: 12; -fx-background-radius: 8; -fx-background-color: #598BAF;" HBox.hgrow="ALWAYS">
 
                                         <Label style="-fx-font-weight: bold;" text="Latest Bill" />
                                         <Label fx:id="electricityCostLabel" style="-fx-font-size: 20px;" text="\$0.00" />

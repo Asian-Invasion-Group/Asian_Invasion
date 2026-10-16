@@ -17,6 +17,10 @@ public class AuthenticationService {
      */
     public boolean signUp(String email, String password) {
 
+        // check if there is email or password
+        if (email.length() == 0 || password.length() == 0) {
+            return false;
+        }
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
         String sql = "INSERT INTO users (password, email) VALUES (?, ?)";
@@ -50,6 +54,11 @@ public class AuthenticationService {
      * @return the userId from the database of the current logged in user
      */
     public int login(String email, String password) {
+
+        // check if there is email or password
+        if (email.length() == 0 || password.length() == 0) {
+            return -1;
+        }
 
         String sql = "SELECT userId, password FROM users WHERE email = ?";
 

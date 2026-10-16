@@ -25,6 +25,10 @@ jobs:
         working-directory: Lifestyle-levelling-Asian-lifestyle
         run: mvn package
 
+      - name: Run JUnit Tests
+        working-directory: Lifestyle-levelling-Asian-lifestyle
+        run: mvn test
+
       - name: Generate Javadoc
         working-directory: Lifestyle-levelling-Asian-lifestyle
         run: mvn javadoc:javadoc

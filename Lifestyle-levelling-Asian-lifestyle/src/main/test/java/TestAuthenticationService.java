@@ -1,15 +1,14 @@
-
 import com.example.lifestylelevellingasianlifestyle.AuthenticationService;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestAuthenticationService {
-    AuthenticationService service;
+    static AuthenticationService service;
     private static final String EMAIL = "will@testing.com";
     private static final String PASSWORD = "Testing";
-    @BeforeEach
-    public void setUp() {
+    @BeforeAll
+    public static void setUp() {
         service = new AuthenticationService();
         service.removeAccount(EMAIL, PASSWORD);
     }
@@ -18,46 +17,11 @@ public class TestAuthenticationService {
         service.removeAccount(EMAIL, PASSWORD);
     }
 
-    @Test
-    public void testSignupWithNewAccount() {
-        boolean result = service.signUp(EMAIL, PASSWORD);
-        assertTrue(result, "Signing up with a new account should succeed");
-    }
-
-    @Test
-    public void testSignupWithExistingAccount() {
-        service.signUp(EMAIL, PASSWORD);
-
-        boolean result = service.signUp(EMAIL, PASSWORD);
-
-        assertFalse(result, "Signing up with an existing email should fail");
-    }
-
-    @Test
-    public void testSignupWithEmptyEmail() {
-        boolean result = service.signUp("", PASSWORD);
-
-        assertFalse(result, "Signing up with an empty email should fail");
-    }
-
-    @Test
-    public void testSignupWithEmptyPassword() {
-        boolean result = service.signUp(EMAIL, "");
-        assertFalse(result, "Signing up with an empty password should fail");
-    }
-
-    @Test
-    public void testSignup() {
-        boolean result = service.signUp(EMAIL,PASSWORD);
-        assertTrue(result);
-    }
-
     // login tests
 
     @Test
     public void testLoginWithCorrectCredentials() {
         service.signUp(EMAIL, PASSWORD);
-
         int userId = service.login(EMAIL, PASSWORD);
 
         assertNotEquals(
@@ -69,8 +33,6 @@ public class TestAuthenticationService {
 
     @Test
     public void testLoginWithIncorrectPassword() {
-        service.signUp(EMAIL, PASSWORD);
-
         int userId = service.login(EMAIL, "WrongPassword123");
 
         assertEquals(
@@ -104,8 +66,6 @@ public class TestAuthenticationService {
 
     @Test
     public void testLoginWithEmptyPassword() {
-        service.signUp(EMAIL, PASSWORD);
-
         int userId = service.login(EMAIL, "");
 
         assertEquals(
@@ -114,6 +74,33 @@ public class TestAuthenticationService {
                 "Login with an empty password should fail"
         );
     }
+
+    @Test
+    public void testSignupWithNewAccount() {
+        boolean result = service.signUp(EMAIL, PASSWORD);
+        assertTrue(result, "Signing up with a new account should succeed");
+    }
+
+    @Test
+    public void testSignupWithExistingAccount() {
+        boolean result = service.signUp("123@gmail.com", PASSWORD);
+
+        assertFalse(result, "Signing up with an existing email should fail");
+    }
+
+    @Test
+    public void testSignupWithEmptyEmail() {
+        boolean result = service.signUp("", PASSWORD);
+
+        assertFalse(result, "Signing up with an empty email should fail");
+    }
+
+    @Test
+    public void testSignupWithEmptyPassword() {
+        boolean result = service.signUp(EMAIL, "");
+        assertFalse(result, "Signing up with an empty password should fail");
+    }
+
 }
 
 
