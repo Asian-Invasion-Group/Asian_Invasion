@@ -48,7 +48,6 @@ public class WeatherService {
      * Retrieves the current weather for a specified location
      * @param latitude lat coordinate of current user
      * @param longitude long coordinate of current user
-     * @return a string containing result
      */
     public void getWeather(double latitude, double longitude) {
 
@@ -271,6 +270,11 @@ public class WeatherService {
         throw new IllegalArgumentException("Invalid input, Only 0 or 1 is allowed.");
     }
 
+    /**
+     * Converts weather data from a JSON string into recommendations.
+     * @param json JSON string containing weather data
+     * @return an array of weather recommendations
+     */
     public String[] getRecommendations(String json) {
         JSONObject jsonObject = new JSONObject(json);
 
@@ -366,7 +370,12 @@ public class WeatherService {
         return weatherCode == 65 || weatherCode == 67 || weatherCode == 82 || weatherCode >= 95 || rainAmount >= 5.0;
     }
 
-
+    /**
+     * Converts weather data from a JSON string into temperatures.
+     *
+     * @param json JSON string containing weather data
+     * @return an array of weather temperatures
+     */
     public String[] getTemperatures(String json) {
         JSONObject jsonObject = new JSONObject(json);
         JSONObject hourly = jsonObject.getJSONObject("hourly");
@@ -384,7 +393,10 @@ public class WeatherService {
         return temperatureArray;
     }
 
-
+    /**
+     * Displays the weather forecast for the specified forecasts.
+     * @param forecasts an array of forecast descriptions to display
+     */
     private void displayForecast(String[] forecasts) {
         forecastList.getChildren().clear();
 
